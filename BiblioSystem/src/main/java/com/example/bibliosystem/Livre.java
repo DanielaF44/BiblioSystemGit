@@ -1,10 +1,9 @@
 package com.example.bibliosystem;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -22,6 +21,24 @@ public class Livre {
 
     @Column(name = "date_publication")
     private Date datePublication;
+
+    @ManyToOne
+    @JoinColumn(name ="editeur_id")
+    private Editeur editeur;
+
+    @ManyToOne
+    @JoinColumn(name ="langue")
+    private Langue langue;
+
+    @ManyToMany
+    @JoinTable
+
+    private List<Auteur> auteurs = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable
+
+    private List<Genre> genres = new ArrayList<>();
 
     public Livre(String isbn, String titre, Date datePublication) {
         this.isbn = isbn;
