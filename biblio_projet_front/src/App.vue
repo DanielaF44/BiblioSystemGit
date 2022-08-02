@@ -1,14 +1,28 @@
 <template>
   <!-- Barre de navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid ">
-      <a class="navbar-brand col-1" href="#"><img class="logo" src="./assets/logo-pontault-combault-rvb.jpg"
-          alt="logo bibliothèque de Pontault-Combault" /></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand col-1" href="#"
+        ><img
+          class="logo"
+          src="./assets/logo-pontault-combault-rvb.jpg"
+          alt="logo bibliothèque de Pontault-Combault"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#bs-example-navbar-collapse-1"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse col-11" id="bs-example-navbar-collapse-1">
+      <div
+        class="collapse navbar-collapse col-11"
+        id="bs-example-navbar-collapse-1"
+      >
         <ul class="navbar-nav container-fluid">
           <li class="nav-item ms-col-3">
             <router-link to="/">Parcourir la bibliothèque</router-link>
@@ -27,8 +41,6 @@
   <router-view />
 </template>
 
-
-
 <style>
 #app {
   font-family: Montserrat, Arial, Helvetica, sans-serif, Helvetica, Arial,
@@ -45,24 +57,20 @@ nav {
   background-color: #1b77bd;
 }
 
-nav a{
+nav a {
   font-weight: bold;
   color: #fff;
   text-decoration: none;
   margin: 20px;
-  
 }
 
-nav a.router-link-exact{
+nav a.router-link-exact {
   border: solid #fff 1px;
   padding: 20px;
   margin: 20px;
-  
 }
 
-
-
-.logo{
+.logo {
   width: 60%;
 }
 
@@ -72,11 +80,11 @@ nav a.router-link-exact-active {
   border-radius: 15px;
 }
 
-.innerNav{
+.innerNav {
   list-style: none;
 }
 
-.flexLeft{
+.flexLeft {
   display: flex;
   justify-content: flex-end;
 }
