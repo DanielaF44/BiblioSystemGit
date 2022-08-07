@@ -3,10 +3,18 @@
     <form>
       <label for="titre">Titre</label>
       <input type="text" v-model="rechercheTitre" />
+      <label for="auteur">Auteur</label>
+      <input type="text" v-model="rechercheAuteur" />
       <label for="genre">Genre</label>
       <select v-model="rechercheGenre">
         <option v-for="genre in genres" :key="genre.nom" :value="genre.nom">
           {{ genre.nom }}
+        </option>
+      </select>
+      <label for="langue">Langue</label>
+      <select v-model="rechercheLangue">
+        <option v-for="langue in langues" :key="langue.nom" :value="langue.nom">
+          {{ langue.nom }}
         </option>
       </select>
       <a href="#" v-on:click="rechercher">Rechercher</a>
@@ -29,6 +37,9 @@ export default {
       genres: null,
       rechercheGenre: null,
       rechercheTitre: null,
+      rechercheAuteur: null,
+      langues: null,
+      rechercheLangue: null
     };
   },
   created() {
@@ -40,11 +51,26 @@ export default {
         let result = [emptyval].concat(response.data);
 
         this.genres = result;
-        this.genres = response.data;
+        //this.genres = response.data;
       })
       .catch((error) => {
         console.log(error);
       });
+    BiblioServiceFront.getLangues()
+    .then((response) => {
+        //add default empty entry
+        let emptyval = { nom: "" };
+        let result = [emptyval].concat(response.data);
+
+        this.langues = result;
+        // this.langues = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+
   },
 
   methods: {
@@ -52,7 +78,9 @@ export default {
       this.$emit(
         "getLivresparCritere",
         this.rechercheGenre,
-        this.rechercheTitre
+        this.rechercheTitre,
+        this.rechercheAuteur,
+        this.rechercheLangue
       );
     },
   },

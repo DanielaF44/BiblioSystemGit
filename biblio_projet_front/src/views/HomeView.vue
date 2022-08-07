@@ -35,8 +35,8 @@ export default {
       });
   },
   methods: {
-    getLivresparCritere(sGenre, sTitre) {
-      BiblioServiceFront.getResults(sGenre, sTitre)
+    getLivresparCritere(sGenre, sTitre, sAuteur, sLangue) {
+      BiblioServiceFront.getResults(sGenre, sTitre, sAuteur, sLangue)
         .then((response) => {
           this.livres = response.data;
         })

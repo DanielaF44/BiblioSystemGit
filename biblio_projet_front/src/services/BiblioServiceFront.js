@@ -20,7 +20,11 @@ export default {
     return apiClient.get("/genres");
   },
 
-  getResults(sGenre, sTitre) {
+  getLangues(){
+    return apiClient.get("/langues");
+  },
+
+  getResults(sGenre, sTitre, sAuteur, sLangue) {
     let sUrl = "/livresbycriteria?";
     //input verification
     if (sTitre && sTitre.length > 0 && sTitre != "null") {
@@ -29,6 +33,13 @@ export default {
     if (sGenre && sGenre.length > 0 && sGenre != "null") {
       sUrl = sUrl + "&genre=" + sGenre;
     }
+    if (sAuteur && sAuteur.length > 0 && sAuteur != "null") {
+      sUrl = sUrl + "&auteur=" + sAuteur;
+    }
+    if (sLangue && sLangue.length > 0 && sLangue != "null") {
+      sUrl = sUrl + "&langue=" + sLangue;
+    }
+
     return apiClient.get(sUrl);
   },
 };
