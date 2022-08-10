@@ -16,7 +16,7 @@ public class BiblioController {
      *
      * @return List<Livre> appelle la methode showLivre du Service qui retourne la liste des livres
      *
-     *
+     *²
      */
     @GetMapping("livres")
     public List<Livre> showLivre(){
@@ -36,6 +36,19 @@ public class BiblioController {
     }
 
     /**
+     * Cette méthode du controlleur permet d'envoyer la liste des langues présentes en base de données dans la table "langue"
+     *
+     * @return List<Langue> appelle la methode showLangue du Service qui retourne la liste des langues
+     *
+     *
+     */
+    @GetMapping("langues")
+    public List<Langue> showLangue(){
+        return biblio.showLangue();
+    }
+
+
+    /**
      * Cette méthode du controlleur permet de recupérer les critères de filtrage saisis par l'utilisateur à
      * partir du Front end. Les critères "titre", "genre", "langue" sont passés à la méthode showRecherche.
      *
@@ -48,8 +61,9 @@ public class BiblioController {
     @GetMapping("livresbycriteria")
     public List<Livre> showRecherche(@RequestParam(name="titre", required=false) String titre,
                                      @RequestParam(name="genre", required=false) String genre,
-                                     @RequestParam(name="langue", required=false) String langue){
-        return biblio.showRecherche(titre, genre, langue);
+                                     @RequestParam(name="langue", required=false) String langue,
+                                     @RequestParam(name="auteur", required=false) String auteur){
+        return biblio.showRecherche(titre, auteur, genre, langue);
     }
 
     @PostMapping("livres")

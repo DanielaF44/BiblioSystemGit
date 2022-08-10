@@ -32,12 +32,10 @@ public class Livre {
 
     @ManyToMany
     @JoinTable
-
     private List<Auteur> auteurs = new ArrayList<>();
 
     @ManyToMany
     @JoinTable
-
     private List<Genre> genres = new ArrayList<>();
 
     public Livre(String isbn, String titre, Date datePublication) {
@@ -53,23 +51,14 @@ public class Livre {
         return isbn;
     }
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
 
     public String getTitre() {
         return titre;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
 
     public Date getDatePublication() {
         return datePublication;
     }
 
-    public void setDatePublication(Date datePublication) {
-        this.datePublication = datePublication;
-    }
 }

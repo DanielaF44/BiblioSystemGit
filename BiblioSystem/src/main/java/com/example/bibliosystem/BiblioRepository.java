@@ -20,9 +20,15 @@ public interface BiblioRepository extends JpaRepository<Livre, String>{
 
     @Query(value = "SELECT * FROM livres"
                    +" INNER JOIN livre_genre ON livres.isbn = livre_genre.isbn"
+                   +" INNER JOIN livre_auteur ON livres.isbn = livre_auteur.isbn"
+                   +" INNER JOIN auteur ON livre_auteur.auteur_id = auteur.id"
                    +" WHERE (:titre is null OR livres.titre LIKE CONCAT('%',:titre,'%'))"
                    +" AND (:genre is null OR livre_genre.nom = :genre)"
-                   +" AND (:langue is null OR livres.langue = :langue)", nativeQuery = true)
+                   +" AND (:langue is null OR livres.langue = :langue)"
+                   +" AND (:auteur is null"
+                   +       " OR CONCAT(auteur.nom, ' ',auteur.prenom) LIKE CONCAT('%',:auteur,'%')"
+                   +       " OR CONCAT(auteur.prenom, ' ',auteur.nom) LIKE CONCAT('%',:auteur,'%')"
+                   + ")", nativeQuery = true)
 
-    List<Livre> findAllByCriteria(String titre, String genre, String langue);
+    List<Livre> findAllByCriteria(String titre, String auteur, String genre, String langue);
 }

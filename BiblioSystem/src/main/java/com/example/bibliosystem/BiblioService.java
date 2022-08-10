@@ -36,8 +36,8 @@ public class BiblioService {
      *
      */
 
-    public List<Livre> showRecherche(String genre, String titre, String langue){
-        return BiblioRepository.findAllByCriteria(genre, titre, langue);
+    public List<Livre> showRecherche(String genre, String auteur, String titre, String langue){
+        return BiblioRepository.findAllByCriteria(genre, auteur,titre, langue);
 
     }
 
@@ -54,5 +54,20 @@ public class BiblioService {
     public List<Genre> showGenre(){
         return GenreRepository.findAll();
     }
+
+    /**
+     * Cette méthode permet de transmettre au controlleur la liste des langues recupérées depuis la base de données
+     *
+     * @return List<Langue> retourne la liste des genres
+     *
+     *
+     */
+
+    @Autowired
+    LangueRepository LangueRepository;
+    public List<Langue> showLangue(){
+        return LangueRepository.findAll();
+    }
+
 
 }
