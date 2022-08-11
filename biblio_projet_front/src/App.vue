@@ -2,12 +2,11 @@
   <!-- Barre de navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand col-1" href="#"
-        ><img
+      <router-link to="/welcome"><img
           class="logo"
           src="./assets/logo-pontault-combault-rvb.jpg"
           alt="logo bibliothèque de Pontault-Combault"
-      /></a>
+      /></router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -27,7 +26,10 @@
           <li class="nav-item ms-col-3">
             <router-link to="/">Parcourir la bibliothèque</router-link>
           </li>
-          <li class="nav-item ms-col-9">
+          <!--<li class="nav-item ms-col-3">
+            <router-link to="/welcome">Bienvenue</router-link>
+          </li>-->
+          <li class="nav-item ms-col-6">
             <ul class="flexLeft">
               <li class="innerNav">
                 <router-link to="/about">About</router-link>
@@ -71,10 +73,10 @@ nav a.router-link-exact {
 }
 
 .logo {
-  width: 60%;
+  width: 80px;
 }
 
-nav a.router-link-exact-active {
+ul a.router-link-exact-active {
   background-color: #4b9cda;
   padding: 15px;
   border-radius: 15px;

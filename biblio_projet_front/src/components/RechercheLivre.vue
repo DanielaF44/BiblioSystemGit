@@ -39,7 +39,7 @@ export default {
       rechercheTitre: null,
       rechercheAuteur: null,
       langues: null,
-      rechercheLangue: null
+      rechercheLangue: null,
     };
   },
   created() {
@@ -57,7 +57,7 @@ export default {
         console.log(error);
       });
     BiblioServiceFront.getLangues()
-    .then((response) => {
+      .then((response) => {
         //add default empty entry
         let emptyval = { nom: "" };
         let result = [emptyval].concat(response.data);
@@ -68,9 +68,6 @@ export default {
       .catch((error) => {
         console.log(error);
       });
-
-
-
   },
 
   methods: {

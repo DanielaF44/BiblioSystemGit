@@ -20,7 +20,7 @@ export default {
     return apiClient.get("/genres");
   },
 
-  getLangues(){
+  getLangues() {
     return apiClient.get("/langues");
   },
 
