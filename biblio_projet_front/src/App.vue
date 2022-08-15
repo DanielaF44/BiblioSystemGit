@@ -2,7 +2,8 @@
   <!-- Barre de navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <router-link to="/welcome"><img
+      <router-link to="/"
+        ><img
           class="logo"
           src="./assets/logo-pontault-combault-rvb.jpg"
           alt="logo bibliothèque de Pontault-Combault"
@@ -24,7 +25,7 @@
       >
         <ul class="navbar-nav container-fluid">
           <li class="nav-item ms-col-3">
-            <router-link to="/">Parcourir la bibliothèque</router-link>
+            <router-link to="/welcome">Parcourir la bibliothèque</router-link>
           </li>
           <!--<li class="nav-item ms-col-3">
             <router-link to="/welcome">Bienvenue</router-link>
