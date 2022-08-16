@@ -11,6 +11,9 @@ public class BiblioController {
     @Autowired
     BiblioService biblio;
 
+    @Autowired
+    private UserRepository userRepository;
+
     /**
      * Cette méthode du controlleur permet d'envoyer la liste des livres présents en base de données dans la table "livres"
      *
@@ -69,5 +72,19 @@ public class BiblioController {
     @PostMapping("livres")
     public void addLivre(@RequestBody Livre newLivre){
         biblio.addLivre(newLivre);
+    }
+
+    @GetMapping("/admin")
+    public String getAdmin(){
+        return " ADMIN page, super secrète, accessible uniquement par les administrateurs!!!!";
+    }
+
+    @PostMapping("/user")
+    public String postUser(@RequestParam("username") String email, @RequestParam("password") String password){
+        User user = new User();
+        user.setEmail(email);
+        user.setMdp(password);
+        userRepository.save(user);
+        return "Ok";
     }
 }
