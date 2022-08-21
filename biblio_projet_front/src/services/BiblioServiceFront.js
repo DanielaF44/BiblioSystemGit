@@ -42,4 +42,10 @@ export default {
 
     return apiClient.get(sUrl);
   },
+
+  getPrets() {
+    // TODO : use the real user id when we have it
+    let sUrl = "/prets?utilisateurId=1";
+    return apiClient.get(sUrl);
+  },
 };

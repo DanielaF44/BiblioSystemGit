@@ -21,6 +21,11 @@ const routes = [
     name: "welcome",
     component: () => import("../views/HomeView.vue"),
   },
+  {
+    path: "/prets",
+    name: "prets",
+    component: () => import("../views/PretView.vue"),
+  },
 ];
 
 const router = createRouter({

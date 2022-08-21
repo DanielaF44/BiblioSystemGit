@@ -27,9 +27,9 @@
           <li class="nav-item ms-col-3">
             <router-link to="/welcome">Parcourir la bibliothèque</router-link>
           </li>
-          <!--<li class="nav-item ms-col-3">
-            <router-link to="/welcome">Bienvenue</router-link>
-          </li>-->
+          <li class="nav-item ms-col-3">
+            <router-link to="/prets">Prêts</router-link>
+          </li>
           <li class="nav-item ms-col-6">
             <ul class="flexLeft">
               <li class="innerNav">
