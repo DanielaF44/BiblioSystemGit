@@ -75,4 +75,9 @@ public class BiblioController {
     public List<Pret> showPret(@RequestParam(name="utilisateurId") Integer utilisateurId){
         return biblio.showPret(utilisateurId);
     }
+
+    @PostMapping("prets")
+    public void prolongePret(@RequestParam(name="pretId") Integer pretId){
+        biblio.updateDateFin(pretId);
+    }
 }

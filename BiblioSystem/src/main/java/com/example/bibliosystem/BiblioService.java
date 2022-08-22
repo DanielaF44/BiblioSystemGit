@@ -3,6 +3,8 @@ package com.example.bibliosystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -76,5 +78,19 @@ public class BiblioService {
 
     }
 
+    public void updateDateFin(Integer pretId){
+        Date dateFin = new Date();
+        dateFin = PretRepository.findDateById(pretId);
 
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dateFin);
+
+        cal.add(Calendar.DAY_OF_MONTH, 30);
+
+        Date dateProlonge;
+        dateProlonge = cal.getTime();
+        System.out.println(dateProlonge);
+        System.out.println(pretId);
+        PretRepository.updateDateFinPret(pretId, dateProlonge);
+    }
 }
