@@ -69,5 +69,12 @@ public class BiblioService {
         return LangueRepository.findAll();
     }
 
+    @Autowired
+    PretRepository PretRepository;
+    public List<Pret> showPret(Integer utilisateurId){
+        return PretRepository.findAllByUtilisateurId(utilisateurId);
+
+    }
+
 
 }

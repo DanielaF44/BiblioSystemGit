@@ -38,6 +38,10 @@ public class Livre {
     @JoinTable
     private List<Genre> genres = new ArrayList<>();
 
+    //@ManyToOne
+    //@JoinColumn(name ="exemplaires")
+    //private List<Exemplaire> exemplaires = new ArrayList<>();
+
     public Livre(String isbn, String titre, Date datePublication) {
         this.isbn = isbn;
         this.titre = titre;

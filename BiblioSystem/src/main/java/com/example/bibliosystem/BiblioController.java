@@ -70,4 +70,9 @@ public class BiblioController {
     public void addLivre(@RequestBody Livre newLivre){
         biblio.addLivre(newLivre);
     }
+
+    @GetMapping("prets")
+    public List<Pret> showPret(@RequestParam(name="utilisateurId") Integer utilisateurId){
+        return biblio.showPret(utilisateurId);
+    }
 }
