@@ -80,4 +80,9 @@ public class BiblioController {
     public void prolongePret(@RequestParam(name="pretId") Integer pretId){
         biblio.updateDateFin(pretId);
     }
+
+    @GetMapping("disponibilite")
+    public Integer showDispos(@RequestParam(name="bibliotheque") String bibliotheque, @RequestParam(name="isbn") String isbn){
+        return biblio.countExemplaire(bibliotheque, isbn);
+    }
 }

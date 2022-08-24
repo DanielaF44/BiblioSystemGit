@@ -1,5 +1,7 @@
 package com.example.bibliosystem;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -26,8 +28,9 @@ public class Pret {
     //@JoinColumn(name ="utilisateur_id")
     //private User utilisateurId;
 
-    @ManyToOne
-    @JoinColumn(name ="exemplaire_id")
+    @JsonManagedReference
+    @OneToOne
+    @JoinColumn(name ="exemplaire_id", referencedColumnName = "id")
     private Exemplaire exemplaireId;
 
     public Pret(Date dateDebut, Date dateFin, Boolean renouvele, /* User utilisateurId,*/ Exemplaire exemplaireId) {

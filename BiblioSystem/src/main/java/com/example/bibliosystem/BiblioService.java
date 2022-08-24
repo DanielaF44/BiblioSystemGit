@@ -93,4 +93,11 @@ public class BiblioService {
         System.out.println(pretId);
         PretRepository.updateDateFinPret(pretId, dateProlonge);
     }
+
+    @Autowired
+    ExemplaireRepository ExemplaireRepository;
+
+    public Integer countExemplaire(String bibliotheque, String isbn){
+        return ExemplaireRepository.findCountExemplaire(bibliotheque, isbn);
+    }
 }

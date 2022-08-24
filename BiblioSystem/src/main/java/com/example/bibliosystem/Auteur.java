@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Auteur {
     @Id
     @Column(name ="id")
-    int id;
+    Integer id;
 
     @Column(name = "nom")
     String nom;
@@ -18,7 +18,7 @@ public class Auteur {
     @Column(name = "prenom")
     String prenom;
 
-    public Auteur(int id, String nom, String prenom) {
+    public Auteur(Integer id, String nom, String prenom) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -28,7 +28,7 @@ public class Auteur {
 
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

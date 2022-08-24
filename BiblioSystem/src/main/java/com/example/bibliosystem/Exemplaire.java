@@ -1,5 +1,7 @@
 package com.example.bibliosystem;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,13 +17,26 @@ public class Exemplaire {
     @JoinColumn(name = "isbn")
     private Livre isbn;
 
+    @JsonBackReference
+    @OneToOne(mappedBy = "exemplaireId")
+    private Pret pretId;
+
     public Exemplaire(Integer exemplaireId, Livre isbn) {
         this.exemplaireId = exemplaireId;
         this.isbn = isbn;
+        this.pretId = pretId;
     }
 
     public Exemplaire(){
 
+    }
+
+    public Pret getPretId() {
+        return pretId;
+    }
+
+    public void setPretId(Pret pretId) {
+        this.pretId = pretId;
     }
 
     public Integer getExemplaireId() {
