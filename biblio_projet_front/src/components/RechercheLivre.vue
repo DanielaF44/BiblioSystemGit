@@ -17,7 +17,7 @@
           {{ langue.nom }}
         </option>
       </select>
-      <a href="#" v-on:click="rechercher">Rechercher</a>
+      <button type="button" v-on:click="rechercher">Rechercher</button>
     </form>
   </div>
 </template>
@@ -89,5 +89,36 @@ export default {
   margin-bottom: 30px;
   padding: 30px 0 30px 0;
   width: 100%;
+}
+
+label {
+  padding: 20px;
+  font-weight: bold;
+}
+
+input {
+  border: none;
+  border-image: none;
+  border-radius: 5px;
+  height: 35px;
+}
+
+select {
+  border: none;
+  border-image: none;
+  border-radius: 5px;
+  height: 35px;
+}
+
+button {
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1b77bd;
+  padding: 10px 20px 12px 20px;
+  margin: 30px;
 }
 </style>

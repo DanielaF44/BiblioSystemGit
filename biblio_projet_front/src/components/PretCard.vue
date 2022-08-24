@@ -1,19 +1,38 @@
+<script setup>
+import { formatDate } from "./commonFunction.js";
+</script>
+
 <template>
   <div class="pretCard">
     <h4>{{ pret.exemplaireId.isbn.titre }}</h4>
-    <p>Date de publication: {{ pret.exemplaireId.isbn.datePublication }}</p>
-    <p>Date de début: {{ pret.dateDebut }}</p>
-    <p>Date de fin: {{ pret.dateFin }}</p>
+    <p>
+      Date de publication:
+      {{ formatDate(pret.exemplaireId.isbn.datePublication) }}
+    </p>
+    <p>Date de début: {{ formatDate(pret.dateDebut) }}</p>
+    <p>Date de fin: {{ formatDate(pret.dateFin) }}</p>
+    <button type="button" v-if="pret.renouvele" disabled>
+      Impossible de prolonger la période de prêt une seconde fois
+    </button>
+    <button type="button" v-else v-on:click="prolonger(pret.pret_id)">
+      Prolonger la periode de prêt
+    </button>
   </div>
 </template>
 
 <script>
+/*import BiblioServiceFront from "@/services/BiblioServiceFront";*/
 export default {
   name: "pretCard",
   props: {
     pret: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    prolonger(sId) {
+      this.$emit("getPret", sId);
     },
   },
 };

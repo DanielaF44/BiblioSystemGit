@@ -1,9 +1,13 @@
+<script setup>
+import { formatDate } from "./commonFunction.js";
+</script>
+
 <template>
   <div class="livreCard">
     <h4>{{ livre.titre }}</h4>
-    <p>{{ livre.datePublication }}</p>
-    <p>{{ livre.isbn }}</p>
-    <p>{{ livre.editeur }}</p>
+    <p>Date de publication: {{ formatDate(livre.datePublication) }}</p>
+    <p>Isbn: {{ livre.isbn }}</p>
+    <p>Editeur: {{ livre.editeur }}</p>
   </div>
 </template>
 

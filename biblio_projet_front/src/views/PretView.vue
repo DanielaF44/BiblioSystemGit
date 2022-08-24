@@ -1,6 +1,11 @@
 <template>
   <div class="prets">
-    <PretCard v-for="pret in prets" :key="pret.pret_id" :pret="pret" />
+    <PretCard
+      v-for="pret in prets"
+      :key="pret.pret_id"
+      :pret="pret"
+      @getPret="getPret"
+    />
   </div>
 </template>
 
@@ -30,18 +35,12 @@ export default {
         console.log(error);
       });
   },
-  /*methods: {
-    getPretsUser() {
-      BiblioServiceFront.getResults
-      (sGenre, sTitre, sAuteur, sLangue)
-        .then((response) => {
-          this.livres = response.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  methods: {
+    getPret(sId) {
+      BiblioServiceFront.postPrets(sId);
+      location.reload();
     },
-  },*/
+  },
 };
 </script>
 <style scoped>
