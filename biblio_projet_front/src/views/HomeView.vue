@@ -44,6 +44,16 @@ export default {
           console.log(error);
         });
     },
+    /*showDispos(sIsbn){
+      BiblioServiceFront.getDispos(sIsbn)
+        .then((response) => {
+          this.dispos = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  },
+},*/
   },
 };
 </script>

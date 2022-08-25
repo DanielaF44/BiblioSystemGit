@@ -53,4 +53,9 @@ export default {
     let sUrl = "/prets?pretId=" + sId;
     return apiClient.post(sUrl);
   },
+
+  getDispos(sIsbn) {
+    let sUrl = "/disponibilites?isbn=" + sIsbn;
+    return apiClient.get(sUrl);
+  },
 };
