@@ -82,7 +82,7 @@ public class BiblioController {
     }
 
     @GetMapping("disponibilite")
-    public Integer showDispos(@RequestParam(name="bibliotheque") String bibliotheque, @RequestParam(name="isbn") String isbn){
-        return biblio.countExemplaire(bibliotheque, isbn);
+    public List<Object> showDispos(@RequestParam(name="isbn") String isbn){
+        return biblio.countExemplaire(isbn);
     }
 }

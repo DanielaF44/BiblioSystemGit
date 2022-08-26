@@ -26,6 +26,9 @@ public class Livre {
     @JoinColumn(name ="editeur_id")
     private Editeur editeur;
 
+    @Column(name="description")
+    private String description;
+
     @ManyToOne
     @JoinColumn(name ="langue")
     private Langue langue;
@@ -107,5 +110,13 @@ public class Livre {
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

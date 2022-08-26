@@ -5,12 +5,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import javax.persistence.EntityManager;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -104,7 +106,7 @@ class BiblioSystemApplicationTests {
 
         assertThat(reponseENJson.isMissingNode(), is(false));
         assertThat(reponseENJson.toString(),
-                equalTo("[{\"isbn\":\"95678987\",\"titre\":\"Harry Potter la chambre des secrets\",\"datePublication\":\"2001-04-03T22:00:00.000+00:00\"}]"));}
+                equalTo("[{\"isbn\":\"95678987\",\"titre\":\"Harry Potter la chambre des secrets\",\"datePublication\":\"2001-04-03T22:00:00.000+00:00\",\"editeur\":{\"id\":1,\"nom\":\"Hachette\"},\"description\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris quis leo vitae ante efficitur volutpat. Donec sit amet placerat metus. Sed iaculis sollicitudin felis, non eleifend augue molestie at. Quisque fringilla cursus ullamcorper. Integer fringilla accumsan velit ut placerat. Mauris lobortis, eros sit amet varius euismod, augue orci maximus neque, vitae mollis est odio in ipsum. Morbi ut venenatis est, ac cursus augue. Proin gravida, sapien vel tempus lacinia, diam quam aliquet ante, et porta velit nibh et mauris.\",\"langue\":{\"nom\":\"Français\"},\"auteurs\":[{\"id\":1,\"nom\":\"Rowling\",\"prenom\":\"JK\"}],\"genres\":[{\"nom\":\"Comédie\"}]}]"));}
 
     @Test
     public void testLivresWithCriteria() throws JsonProcessingException{
@@ -181,5 +183,77 @@ class BiblioSystemApplicationTests {
         Langue testLangue = new Langue("Anglais");
         assertThat(testLangue.getNom(),equalTo("Anglais"));
     }
+
+    @Test
+    public void testPrets()throws JsonProcessingException{
+        ResponseEntity<String> reponse = this.restTemplate
+                .getForEntity("http://localhost:8080/prets?utilisateurId=1", String.class);
+
+        assertThat(reponse.getStatusCode(), equalTo(HttpStatus.OK));
+
+        JsonNode reponseENJson = objectMapper.readTree(reponse.getBody());
+
+        assertThat(reponseENJson.isMissingNode(), is(false));
+        assertThat(reponseENJson.toString(),
+                not(" "));
+    }
+
+    @Mock
+    private EntityManager manager;
+
+    @Mock
+    private PretRepository pretRepository;
+
+    @Mock
+    private ExemplaireRepository exemplaireRepository;
+
+    @InjectMocks
+    private BiblioService biblioService;
+
+    @Test
+    public void testPret(){
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, 2022);
+        cal.set(Calendar.MONTH, Calendar.AUGUST);
+        cal.set(Calendar.DAY_OF_MONTH, 22);
+        Date dateDebutTest = cal.getTime();
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.set(Calendar.YEAR, 2022);
+        cal2.set(Calendar.MONTH, Calendar.SEPTEMBER);
+        cal2.set(Calendar.DAY_OF_MONTH, 22);
+        Date dateFinTest = cal2.getTime();
+
+        Exemplaire exemplaireTest = new Exemplaire();
+
+        manager.persist(exemplaireTest);
+
+
+
+        Pret testPret = new Pret(dateDebutTest, dateFinTest, false, exemplaireTest);
+        System.out.println(testPret.getDateDebut());
+        assertThat(testPret.getDateDebut(), equalTo(dateDebutTest));
+        assertThat(testPret.getDateFin(), equalTo(dateFinTest));
+        assertThat(testPret.getRenouvele(), equalTo(false));
+        assertThat(testPret.getExemplaireId(), equalTo(exemplaireTest));
+    }
+
+    @Test
+    public void testDispos()throws JsonProcessingException{
+        ResponseEntity<String> reponse = this.restTemplate
+                .getForEntity("http://localhost:8080/disponibilite?isbn=95678987", String.class);
+
+        assertThat(reponse.getStatusCode(), equalTo(HttpStatus.OK));
+
+        biblioService.countExemplaire("95678987");
+
+        JsonNode reponseENJson = objectMapper.readTree(reponse.getBody());
+
+        assertThat(reponseENJson.isMissingNode(), is(false));
+        assertThat(reponseENJson.toString(),
+                equalTo("[[\"Biblio1\",1],[\"Biblio2\",1]]"));
+    }
+
+
 
 }

@@ -3,6 +3,7 @@ package com.example.bibliosystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -37,8 +38,11 @@ public class BiblioService {
      *
      *
      */
+    @Autowired
+    ExemplaireRepository ExemplaireRepository;
 
     public List<Livre> showRecherche(String genre, String auteur, String titre, String langue){
+
         return BiblioRepository.findAllByCriteria(genre, auteur,titre, langue);
 
     }
@@ -94,10 +98,9 @@ public class BiblioService {
         PretRepository.updateDateFinPret(pretId, dateProlonge);
     }
 
-    @Autowired
-    ExemplaireRepository ExemplaireRepository;
 
-    public Integer countExemplaire(String bibliotheque, String isbn){
-        return ExemplaireRepository.findCountExemplaire(bibliotheque, isbn);
+
+    public List<Object> countExemplaire(String isbn){
+        return ExemplaireRepository.findCountExemplaire(isbn);
     }
 }
