@@ -26,6 +26,16 @@ const routes = [
     name: "prets",
     component: () => import("../views/PretView.vue"),
   },
+  {
+    path: "/connexion",
+    name: "connexion",
+    component: () => import("../views/ConnexionView.vue"),
+  },
+  {
+    path: "/inscription",
+    name: "inscription",
+    component: () => import("../views/InscriptionView.vue"),
+  },
 ];
 
 const router = createRouter({

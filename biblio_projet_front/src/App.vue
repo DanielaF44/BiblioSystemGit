@@ -35,6 +35,12 @@
               <li class="innerNav">
                 <router-link to="/about">About</router-link>
               </li>
+              <li class="innerNav">
+                <router-link to="/connexion">Se connecter</router-link>
+              </li>
+              <li class="innerNav">
+                <router-link to="/inscription">Créer un compte</router-link>
+              </li>
             </ul>
           </li>
         </ul>
@@ -101,6 +107,11 @@ button {
   font-weight: bold;
   color: #1b77bd;
   padding: 10px 20px 12px 20px;
+  margin: 30px;
+}
+
+form > button {
+  border-radius: 15px;
   margin: 30px;
 }
 </style>
