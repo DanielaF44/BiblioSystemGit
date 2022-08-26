@@ -40,31 +40,46 @@ import { formatDate } from "./commonFunction.js";
       <h5>Présentation:</h5>
       <p>{{ livre.description }}</p>
     </div>
+    <DispoInfo v-bind:dispo="dispos" />
   </div>
 </template>
 
 <script>
+import DispoInfo from "@/components/DispoInfo.vue";
+import BiblioServiceFront from "@/services/BiblioServiceFront";
 // import de axios qui permet de gérer les requêtes entrant/sortant de l'API
 export default {
-  name: "livreCard",
+  name: "LivreCard",
+  Components: {
+    DispoInfo,
+  },
   props: {
     livre: {
       type: Object,
       required: true,
     },
   },
-  /*methods: {
+  data() {
+    return {
+      dispos: null,
+    };
+  },
+  created() {
+    this.showDispo(this.livre.isbn);
+  },
+  methods: {
     showDispo(sIsbn) {
       //recupère des livres à partir du back end quand le composant est crée
       BiblioServiceFront.getDispos(sIsbn)
         .then((response) => {
-          this.prets = response.data;
+          console.log(this.dispos);
+          this.dispos = response.data;
         })
         .catch((error) => {
           console.log(error);
         });
     },
-  },*/
+  },
 };
 </script>
 
@@ -73,7 +88,6 @@ export default {
 .livreCard {
   padding: 20px;
   width: 95%;
-  cursor: pointer;
   box-shadow: 2px 2px 20px #343434;
   border-radius: 15px;
   margin-bottom: 18px;

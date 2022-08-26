@@ -110,15 +110,8 @@ select {
   height: 35px;
 }
 
-button {
-  background-color: white;
-  border: none;
+form > button {
   border-radius: 15px;
-  height: 50px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #1b77bd;
-  padding: 10px 20px 12px 20px;
   margin: 30px;
 }
 </style>

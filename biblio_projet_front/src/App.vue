@@ -5,7 +5,7 @@
       <router-link to="/"
         ><img
           class="logo"
-          src="./assets/logo-pontault-combault-rvb.jpg"
+          src="./assets/BiblioLogo1.png"
           alt="logo bibliothèque de Pontault-Combault"
       /></router-link>
       <button
@@ -74,7 +74,7 @@ nav a.router-link-exact {
 }
 
 .logo {
-  width: 80px;
+  width: 90px;
 }
 
 ul a.router-link-exact-active {
@@ -90,5 +90,17 @@ ul a.router-link-exact-active {
 .flexLeft {
   display: flex;
   justify-content: flex-end;
+}
+
+button {
+  background-color: #a2dce4;
+  border: none;
+  border-radius: 15px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1b77bd;
+  padding: 10px 20px 12px 20px;
+  margin: 30px;
 }
 </style>

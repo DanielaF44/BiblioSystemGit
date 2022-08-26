@@ -55,7 +55,7 @@ export default {
   },
 
   getDispos(sIsbn) {
-    let sUrl = "/disponibilites?isbn=" + sIsbn;
+    let sUrl = "/disponibilite?isbn=" + sIsbn;
     return apiClient.get(sUrl);
   },
 };
