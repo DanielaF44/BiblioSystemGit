@@ -4,8 +4,8 @@ package com.example.bibliosystem.payload.request;
 
 public class LoginRequest {
 
+    //en réalité on authentifie l'utilisateur avec son adresse email => username = email
     private String username;
-
 
     private String password;
 

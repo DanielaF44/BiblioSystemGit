@@ -14,14 +14,18 @@ public class UserDetailsImpl implements UserDetails {
 
     private Integer id;
     private String email;
+    private String nom;
+    private String prenom;
 
     @JsonIgnore
     private String mdp;
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(Integer id, String email, String mdp, List<GrantedAuthority> authorities) {
+    public UserDetailsImpl(Integer id, String email, String nom, String prenom, String mdp, List<GrantedAuthority> authorities) {
         this.id = id;
         this.email = email;
+        this.nom = nom;
+        this.prenom = prenom;
         this.mdp = mdp;
         this.authorities = authorities;
     }
@@ -33,8 +37,26 @@ public class UserDetailsImpl implements UserDetails {
         return new UserDetailsImpl(
                 user.getUserId(),
                 user.getEmail(),
+                user.getNom(),
+                user.getPrenom(),
                 user.getMdp(),
                 authorities);
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     @Override
