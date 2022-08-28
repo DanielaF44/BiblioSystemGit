@@ -3,6 +3,7 @@ package com.example.bibliosystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080"})
@@ -71,11 +72,13 @@ public class BiblioController {
         biblio.addLivre(newLivre);
     }
 
+    @RolesAllowed("USER")
     @GetMapping("prets")
     public List<Pret> showPret(@RequestParam(name="utilisateurId") Integer utilisateurId){
         return biblio.showPret(utilisateurId);
     }
 
+    @RolesAllowed("USER")
     @PostMapping("prets")
     public void prolongePret(@RequestParam(name="pretId") Integer pretId){
         biblio.updateDateFin(pretId);
