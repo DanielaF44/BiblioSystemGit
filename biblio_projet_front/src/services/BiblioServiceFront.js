@@ -1,6 +1,7 @@
 //Ce fichier nous permet d'utiliser une seule instance de axios qui va gérer les requêtes API de plusieurs vue et composants
 
 import axios from "axios";
+import authHeader from './auth-header.helper';
 
 const apiClient = axios.create({
   baseURL: "http://localhost:8080",
@@ -10,6 +11,9 @@ const apiClient = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+const API_URL = 'http://localhost:8080';
+
 
 export default {
   getLivres() {
@@ -46,7 +50,8 @@ export default {
   getPrets() {
     // TODO : use the real user id when we have it
     let sUrl = "/prets?utilisateurId=2";
-    return apiClient.get(sUrl);
+    console.log(JSON.parse(localStorage.getItem('user')));
+    return axios.get(API_URL + sUrl, { headers: authHeader() });
   },
 
   postPrets(sId) {

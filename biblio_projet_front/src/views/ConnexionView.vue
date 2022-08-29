@@ -2,20 +2,56 @@
   <section class="Connexion">
     <form>
       <div class="entree">
-        <label for="titre">E-mail</label>
-        <input type="text" />
+        <label for="email">E-mail</label>
+        <input type="text" v-model="user.username"/>
       </div>
       <div class="entree">
-        <label for="auteur">Mot de passe</label>
-        <input type="text" />
+        <label for="MotDePasse">Mot de passe</label>
+        <input type="text" v-model="user.password"/>
       </div>
-      <button>Se connecter</button>
+      <button v-on:click="handleLogin(user)">Se connecter</button>
     </form>
   </section>
 </template>
 <script>
 export default {
   name: "ConnexionView",
+  data() {
+    return {
+      user: { username: null, password: null },
+    };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
+  },
+  created() {
+    if (this.loggedIn) {
+      //this.$router.push("/welcome");
+    }
+  },
+  methods: {
+    handleLogin(user) {
+      console.log(user);
+      this.loading = true;
+      this.$store.dispatch("auth/login", user).then(
+        () => {
+          //this.$router.push("/welcome");
+        },
+        (error) => {
+         /* this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();*/
+            console.log(error.toString());
+        }
+      );
+    },
+  }
 };
 </script>
 <style scoped>
