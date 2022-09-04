@@ -2,6 +2,7 @@ package com.example.bibliosystem.controller;
 
 import com.example.bibliosystem.*;
 import com.example.bibliosystem.payload.request.LoginRequest;
+import com.example.bibliosystem.payload.request.ProfileRequest;
 import com.example.bibliosystem.payload.request.SignupRequest;
 import com.example.bibliosystem.payload.response.JwtResponse;
 import com.example.bibliosystem.payload.response.MessageResponse;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -49,14 +51,15 @@ public class AuthController {
                 .collect(Collectors.toList());
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
-                userDetails.getNom()/*nom*/,
-                userDetails.getPrenom()/*prenom*/,
-                userDetails.getUsername()/*email*/,
+                userDetails.getNom(),
+                userDetails.getPrenom(),
+                userDetails.getUsername(),
                 roles));
     }
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
+        System.out.println(signUpRequest);
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
@@ -91,5 +94,48 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    @PostMapping("/profile")
+    public ResponseEntity<?> updateProfile (@RequestBody ProfileRequest profileRequest) {
+
+        Optional<User> optUser =  userRepository.findByEmail(profileRequest.getEmail());
+        if(!optUser.isPresent()){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Something went wrong"));
+        }
+
+        User user = new User(
+                optUser.get().getUserId(),
+                profileRequest.getNom(),
+                profileRequest.getPrenom(),
+                profileRequest.getEmail(),
+                encoder.encode(profileRequest.getPassword()));
+        Set<String> strRoles = profileRequest.getRole();
+        Set<Role> roles = new HashSet<>();
+        if (strRoles == null) {
+            Role userRole = roleRepository.findByName(ERole.USER)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);
+        } else {
+            strRoles.forEach(role -> {
+                switch (role) {
+                    case "admin" -> {
+                        Role adminRole = roleRepository.findByName(ERole.ADMIN)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(adminRole);
+                    }
+                    default -> {
+                        Role userRole = roleRepository.findByName(ERole.USER)
+                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+                        roles.add(userRole);
+                    }
+                }
+            });
+        }
+        user.setRoles(roles);
+        userRepository.save(user);
+        return ResponseEntity.ok(new MessageResponse("User updated successfully!"));
     }
 }

@@ -67,6 +67,14 @@ public class User {
         this.mdp = mdp;
     }
 
+    public User(Integer userId, String nom, String prenom, String email, String mdp) {
+        this.userId = userId;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.mdp = mdp;
+    }
+
     public Integer getUserId() {
         return userId;
     }
