@@ -15,7 +15,8 @@
       </li>
     </ul>
     <button class="button">
-        <router-link to="update-user"> Modifier le compte</router-link></button>
+      <router-link to="update-user"> Modifier le compte</router-link>
+    </button>
   </section>
 </template>
 <script>
@@ -40,14 +41,12 @@ export default {
   margin-left: 20px;
 }
 
-.label{
-    padding: 20px;
+.label {
+  padding: 20px;
   font-weight: bold;
   width: 200px;
   text-align: end;
-    
 }
-
 
 p {
   display: inline-block;

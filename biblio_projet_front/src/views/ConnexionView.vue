@@ -16,6 +16,7 @@
       <button class="button" v-on:click="handleLogin(user)">
         Se connecter
       </button>
+      <p v-show="status" v-text="status"></p>
     </form>
   </section>
 </template>
@@ -42,13 +43,17 @@ export default {
     handleLogin(user) {
       console.log(user);
       //this.loading = true;
-      this.$store.dispatch("auth/login", user).then(() => {
-       // this.$router.push({ path: "/welcome" });
-      });
-      //.catch((err) => {
-      // this.error = err.response.data.error;
-      //});
-      //console.log(error.toString());
+      this.$store
+        .dispatch("auth/login", user)
+        .then(() => {
+          // this.$router.push({ path: "/welcome" });
+        })
+        .catch((error) => {
+          (error) => (this.status = error.response.data.status);
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        });
     },
   },
 };

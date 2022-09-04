@@ -1,6 +1,12 @@
 <template>
   <section class="UpdateInfo">
     <form>
+      <div class="errors" v-if="errors.length">
+        <b>Please correct the following error(s):</b>
+        <ul class="errors">
+          <li v-for="error in errors" :key="error">{{ error }}</li>
+        </ul>
+      </div>
       <div class="entree">
         <label for="nom">Nom</label>
         <input v-model="user.nom" type="text" placeholder="Doe" />
@@ -23,7 +29,7 @@
       </div>
       <div class="entree">
         <label for="mdp">Confirmation du mot de passe</label>
-        <input type="password" />
+        <input v-model="passwordConf" type="password" />
       </div>
       <button
         class="button buttonIns"
@@ -41,16 +47,42 @@ export default {
   data() {
     return {
       user: { nom: null, prenom: null, email: null, password: null },
+      passwordConf: null,
       error: null,
     };
   },
   methods: {
-    handleUpdate(user) {
+    handleUpdate(user, passwordConf) {
+      this.errors = [];
+      if (!user.nom || user.nom.length < 2) {
+        this.errors.push("Nom invalide");
+      }
+
+      if (!user.prenom || user.prenom.length < 2) {
+        this.errors.push("Prenom invalide");
+      }
+
+      if (!user.email || user.email.includes("@", ".")) {
+        this.errors.push("Email invalide");
+      }
+
+      const passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+      if (!user.password || !user.password.match(passw)) {
+        this.errors.push("Mot de passe invalide");
+      }
+
+      if (user.password != passwordConf) {
+        this.errors.push("Les deux mots de passe doivent être identiques");
+      }
+
+      if (this.errors.length > 0) {
+        return;
+      }
       //this.message = "";
       //this.successful = false;
       //this.loading = true;
       this.$store.dispatch("auth/profile", user).then(() => {
-       // this.$router.push({ path: "/welcome" });
+        // this.$router.push({ path: "/welcome" });
       });
       //.catch((err) => {
       // this.error = err.response.data.error;
@@ -89,6 +121,11 @@ input {
 
 .buttonIns {
   width: 400px;
+}
+
+.errors {
+  list-style: none;
+  color: red;
 }
 
 @media only screen and (max-width: 576px) {

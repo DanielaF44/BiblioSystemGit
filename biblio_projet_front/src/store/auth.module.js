@@ -1,4 +1,3 @@
-
 import AuthService from "../services/auth.service";
 const user = JSON.parse(localStorage.getItem("user"));
 //condition ternaire => pas bon, à retravailler
@@ -37,20 +36,17 @@ export const auth = {
         }
       );
     },
-      profile({ commit }, user) {
+    profile({ commit }, user) {
       return AuthService.update(user).then(
         (response) => {
           return Promise.resolve(response);
-          
-
         },
         (error) => {
           commit("registerFailure");
           return Promise.reject(error);
         }
-      )
-      
-    }
+      );
+    },
   },
   mutations: {
     loginSuccess(state, user) {
@@ -72,4 +68,4 @@ export const auth = {
       state.status.loggedIn = false;
     },
   },
-}
+};

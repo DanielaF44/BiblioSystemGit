@@ -29,22 +29,24 @@ class AuthService {
       password: user.password,
     });
   }
-  update(user){
-    return axios.post(API_URL + "profile", {
+  update(user) {
+    return axios
+      .post(API_URL + "profile", {
         nom: user.nom,
         prenom: user.prenom,
         email: user.email,
         password: user.password,
-    }).then((response) => {
-      if (response) {
-        console.log(response);
-        let userToUpdate = JSON.parse(localStorage.getItem("user"));
-        userToUpdate.email = user.email;
-        userToUpdate.nom = user.nom;
-        userToUpdate.prenom = user.prenom;
-        localStorage.setItem("user", JSON.stringify(userToUpdate));
-      }
-    });
+      })
+      .then((response) => {
+        if (response) {
+          console.log(response);
+          let userToUpdate = JSON.parse(localStorage.getItem("user"));
+          userToUpdate.email = user.email;
+          userToUpdate.nom = user.nom;
+          userToUpdate.prenom = user.prenom;
+          localStorage.setItem("user", JSON.stringify(userToUpdate));
+        }
+      });
   }
 }
 export default new AuthService();
