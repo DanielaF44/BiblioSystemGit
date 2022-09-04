@@ -28,18 +28,44 @@
             <router-link to="/welcome">Parcourir la bibliothèque</router-link>
           </li>
           <li class="nav-item ms-col-3">
-            <router-link to="/prets">Prêts</router-link>
+            <router-link
+              v-if="this.$store.state.auth.status.loggedIn"
+              to="/prets"
+              >Prêts</router-link
+            >
           </li>
           <li class="nav-item ms-col-6">
             <ul class="flexLeft">
               <li class="innerNav">
-                <router-link to="/about">About</router-link>
+                <router-link
+                  v-if="!this.$store.state.auth.status.loggedIn"
+                  to="/connexion"
+                  >Se connecter</router-link
+                >
               </li>
               <li class="innerNav">
-                <router-link to="/connexion">Se connecter</router-link>
+                <router-link
+                  v-if="this.$store.state.auth.status.loggedIn"
+                  to="infos-user"
+                  >Informations du compte</router-link
+                >
               </li>
               <li class="innerNav">
-                <router-link to="/inscription">Créer un compte</router-link>
+                <router-link
+                  class="button"
+                  v-if="this.$store.state.auth.status.loggedIn"
+                  v-on:click="logout"
+                  to="/"
+                >
+                  Se déconnecter</router-link
+                >
+              </li>
+              <li class="innerNav">
+                <router-link
+                  v-if="!this.$store.state.auth.status.loggedIn"
+                  to="/inscription"
+                  >Créer un compte</router-link
+                >
               </li>
             </ul>
           </li>
@@ -49,6 +75,16 @@
   </nav>
   <router-view />
 </template>
+
+<script>
+export default {
+  methods: {
+    logout() {
+      this.$store.dispatch("auth/logout");
+    },
+  },
+};
+</script>
 
 <style>
 #app {
@@ -98,7 +134,7 @@ ul a.router-link-exact-active {
   justify-content: flex-end;
 }
 
-button {
+.button {
   background-color: #a2dce4;
   border: none;
   border-radius: 15px;

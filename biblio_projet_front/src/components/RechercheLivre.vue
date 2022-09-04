@@ -17,7 +17,9 @@
           {{ langue.nom }}
         </option>
       </select>
-      <button type="button" v-on:click="rechercher">Rechercher</button>
+      <button class="button" type="button" v-on:click="rechercher">
+        Rechercher
+      </button>
     </form>
   </div>
 </template>

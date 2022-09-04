@@ -1,5 +1,6 @@
-import AuthService from '../services/auth.service';
-const user = JSON.parse(localStorage.getItem('user'));
+
+import AuthService from "../services/auth.service";
+const user = JSON.parse(localStorage.getItem("user"));
 //condition ternaire => pas bon, à retravailler
 const initialState = user
   ? { status: { loggedIn: true }, user }
@@ -10,31 +11,45 @@ export const auth = {
   actions: {
     login({ commit }, user) {
       return AuthService.login(user).then(
-        user => {
-          commit('loginSuccess', user);
+        (user) => {
+          commit("loginSuccess", user);
           return Promise.resolve(user);
         },
-        error => {
-          commit('loginFailure');
+        (error) => {
+          commit("loginFailure");
           return Promise.reject(error);
         }
       );
     },
     logout({ commit }) {
       AuthService.logout();
-      commit('logout');
+      commit("logout");
     },
     register({ commit }, user) {
       return AuthService.register(user).then(
-        response => {
-          commit('registerSuccess');
+        (response) => {
+          commit("registerSuccess");
           return Promise.resolve(response.data);
         },
-        error => {
-          commit('registerFailure');
+        (error) => {
+          commit("registerFailure");
           return Promise.reject(error);
         }
       );
+    },
+      profile({ commit }, user) {
+      return AuthService.update(user).then(
+        (response) => {
+          return Promise.resolve(response);
+          
+
+        },
+        (error) => {
+          commit("registerFailure");
+          return Promise.reject(error);
+        }
+      )
+      
     }
   },
   mutations: {
@@ -55,6 +70,6 @@ export const auth = {
     },
     registerFailure(state) {
       state.status.loggedIn = false;
-    }
-  }
-};
+    },
+  },
+}

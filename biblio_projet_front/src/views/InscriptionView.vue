@@ -3,31 +3,61 @@
     <form>
       <div class="entree">
         <label for="nom">Nom</label>
-        <input type="text" />
+        <input v-model="user.nom" type="text" placeholder="Doe" />
       </div>
       <div class="entree">
         <label for="prenom">Prénom</label>
-        <input type="text" />
+        <input v-model="user.prenom" type="text" placeholder="John" />
       </div>
       <div class="entree">
         <label for="email">E-mail</label>
-        <input type="text" />
+        <input
+          v-model="user.email"
+          type="text"
+          placeholder="john.doe@email.com"
+        />
       </div>
       <div class="entree">
         <label for="mdp">Mot de passe</label>
-        <input type="text" />
+        <input v-model="user.password" type="password" />
       </div>
       <div class="entree">
         <label for="mdp">Confirmation du mot de passe</label>
-        <input type="text" />
+        <input type="password" />
       </div>
-      <button>Valider la création d'un compte</button>
+      <button
+        class="button buttonIns"
+        type="submit"
+        v-on:click="handleRegister(user)"
+      >
+        Valider la création d'un compte
+      </button>
     </form>
   </section>
 </template>
 <script>
 export default {
   name: "ConnexionView",
+  data() {
+    return {
+      user: { nom: null, prenom: null, email: null, password: null },
+      error: null,
+    };
+  },
+  methods: {
+    handleRegister(user) {
+      //this.message = "";
+      //this.successful = false;
+      //this.loading = true;
+      this.$store.dispatch("auth/register", user).then(() => {
+        this.$router.push({ path: "/welcome" });
+      });
+      //.catch((err) => {
+      // this.error = err.response.data.error;
+      //});
+      //console.log(error.toString());
+    },
+  },
 };
 </script>
 <style scoped>
@@ -57,8 +87,8 @@ input {
   margin-left: 20px;
 }
 
-form > button {
-  width: 300px;
+.buttonIns {
+  width: 350px;
 }
 
 @media only screen and (max-width: 576px) {

@@ -1,48 +1,55 @@
 <template>
-  <section class="Connexion">
+  <section class="UpdateInfo">
     <form>
+      <div class="entree">
+        <label for="nom">Nom</label>
+        <input v-model="user.nom" type="text" placeholder="Doe" />
+      </div>
+      <div class="entree">
+        <label for="prenom">Prénom</label>
+        <input v-model="user.prenom" type="text" placeholder="John" />
+      </div>
       <div class="entree">
         <label for="email">E-mail</label>
         <input
+          v-model="user.email"
           type="text"
-          v-model="user.username"
           placeholder="john.doe@email.com"
         />
       </div>
       <div class="entree">
-        <label for="MotDePasse">Mot de passe</label>
-        <input type="password" v-model="user.password" />
+        <label for="mdp">Mot de passe</label>
+        <input v-model="user.password" type="password" />
       </div>
-      <button class="button" v-on:click="handleLogin(user)">
-        Se connecter
+      <div class="entree">
+        <label for="mdp">Confirmation du mot de passe</label>
+        <input type="password" />
+      </div>
+      <button
+        class="button buttonIns"
+        type="submit"
+        v-on:click="handleUpdate(user)"
+      >
+        Valider la modification du compte
       </button>
     </form>
   </section>
 </template>
 <script>
 export default {
-  name: "ConnexionView",
+  name: "UpdateInfoView",
   data() {
     return {
-      user: { username: null, password: null },
+      user: { nom: null, prenom: null, email: null, password: null },
       error: null,
     };
   },
-  computed: {
-    loggedIn() {
-      return this.$store.state.auth.status.loggedIn;
-    },
-  },
-  created() {
-    if (this.loggedIn) {
-      //this.$router.push("/welcome");
-    }
-  },
   methods: {
-    handleLogin(user) {
-      console.log(user);
+    handleUpdate(user) {
+      //this.message = "";
+      //this.successful = false;
       //this.loading = true;
-      this.$store.dispatch("auth/login", user).then(() => {
+      this.$store.dispatch("auth/profile", user).then(() => {
        // this.$router.push({ path: "/welcome" });
       });
       //.catch((err) => {
@@ -54,7 +61,7 @@ export default {
 };
 </script>
 <style scoped>
-.Connexion {
+.UpdateInfo {
   padding: 20px;
   width: 95%;
   box-shadow: 2px 2px 20px #343434;
@@ -68,7 +75,7 @@ export default {
 label {
   padding: 20px;
   font-weight: bold;
-  min-width: 200px;
+  min-width: 270px;
   text-align: end;
 }
 
@@ -80,8 +87,8 @@ input {
   margin-left: 20px;
 }
 
-form > button {
-  width: 250px;
+.buttonIns {
+  width: 400px;
 }
 
 @media only screen and (max-width: 576px) {
