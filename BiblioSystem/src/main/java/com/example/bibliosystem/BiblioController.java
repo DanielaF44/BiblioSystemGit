@@ -1,6 +1,8 @@
 package com.example.bibliosystem;
 
+import com.example.bibliosystem.payload.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -63,7 +65,27 @@ public class BiblioController {
     public List<Livre> showRecherche(@RequestParam(name="titre", required=false) String titre,
                                      @RequestParam(name="genre", required=false) String genre,
                                      @RequestParam(name="langue", required=false) String langue,
-                                     @RequestParam(name="auteur", required=false) String auteur){
+                                     @RequestParam(name="auteur", required=false) String auteur) {
+
+        String messages = "";
+
+        if(titre != null){
+            if(titre.length() > 100 || titre.contains("<") || titre.contains(">") || titre.contains("=")){
+                messages = "Titre invalide";
+            }
+        }
+        if(auteur != null){
+            if(auteur.length() > 40 || auteur.contains("<") || auteur.contains(">") || auteur.contains("=")){
+                messages = messages.concat(", Auteur invalide");
+            }
+        }
+
+        if(!messages.equals("")){
+
+            throw new IllegalArgumentException(messages);
+        }
+
+
         return biblio.showRecherche(titre, auteur, genre, langue);
     }
 

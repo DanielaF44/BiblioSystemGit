@@ -17,10 +17,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.regex.Matcher;
+
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080"})
@@ -60,11 +59,46 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
         System.out.println(signUpRequest);
+
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Email is already in use!"));
         }
+
+
+
+        String messages = "";
+
+        if (signUpRequest.getNom().equals("null") || signUpRequest.getNom().length() < 2) {
+
+            messages = "Nom invalide";
+        }
+
+        if (signUpRequest.getPrenom().equals("null") || signUpRequest.getPrenom().length() < 2) {
+
+            messages = messages.concat(", Prenom invalide");
+        }
+
+        if(signUpRequest.getEmail().equals("null") || !signUpRequest.getEmail().contains("@") && !signUpRequest.getEmail().contains(".")){
+
+            messages = messages.concat(", Email invalide");
+        }
+
+        String passw = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20}$";
+
+        if(signUpRequest.getPassword().equals("null") || !signUpRequest.getPassword().matches(passw)) {
+
+            messages = messages.concat(", Mot de passe invalide");
+        }
+
+        if(!messages.equals("")){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse(messages));
+        }
+
+
         // Create new user's account
         User user = new User(signUpRequest.getNom(), signUpRequest.getPrenom(),
                 signUpRequest.getEmail(),
@@ -103,7 +137,37 @@ public class AuthController {
         if(!optUser.isPresent()){
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Something went wrong"));
+                    .body(new MessageResponse("Error: L'utilisateur n'existe pas"));
+        }
+
+        String messages = "";
+
+        if (profileRequest.getNom().equals("null") || profileRequest.getNom().length() < 2) {
+
+            messages = "Nom invalide";
+        }
+
+        if (profileRequest.getPrenom().equals("null") || profileRequest.getPrenom().length() < 2) {
+
+            messages = messages.concat(", Prenom invalide");
+        }
+
+        if(profileRequest.getEmail().equals("null") || !profileRequest.getEmail().contains("@") && !profileRequest.getEmail().contains(".")){
+
+            messages = messages.concat(", Email invalide");
+        }
+
+        String passw = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20}$";
+
+        if(profileRequest.getPassword().equals("null") || !profileRequest.getPassword().matches(passw)) {
+
+            messages = messages.concat(", Mot de passe invalide");
+        }
+
+        if(!messages.equals("")){
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse(messages));
         }
 
         User user = new User(
