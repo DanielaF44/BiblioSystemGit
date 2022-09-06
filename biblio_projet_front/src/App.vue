@@ -150,4 +150,9 @@ form > button {
   border-radius: 15px;
   margin: 30px;
 }
+
+.errors {
+  list-style: none;
+  color: red;
+}
 </style>

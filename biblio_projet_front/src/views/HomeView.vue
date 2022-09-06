@@ -1,6 +1,12 @@
 <template>
   <div class="home">
     <RechercheLivre @getLivresparCritere="getLivresparCritere" />
+    <div class="errors" v-if="errors.length">
+      <b>Please correct the following error(s):</b>
+      <ul class="errors">
+        <li v-for="error in errors" :key="error">{{ error }}</li>
+      </ul>
+    </div>
     <LivreCard v-for="livre in livres" :key="livre.isbn" :livre="livre" />
   </div>
 </template>
@@ -22,6 +28,7 @@ export default {
   data() {
     return {
       livres: null,
+      errors: [],
     };
   },
   created() {
@@ -36,6 +43,20 @@ export default {
   },
   methods: {
     getLivresparCritere(sGenre, sTitre, sAuteur, sLangue) {
+      this.errors = [];
+
+      if (sTitre) {
+        if (sTitre.length > 100 || sTitre.includes("<", ">", "=")) {
+          this.errors.push("Titre invalide");
+        }
+      }
+
+    if (sAuteur) {
+      if (sAuteur.length > 40 || sAuteur.includes("<", ">", "=")) {
+          this.errors.push("Auteur invalide");
+        }
+    }
+
       BiblioServiceFront.getResults(sGenre, sTitre, sAuteur, sLangue)
         .then((response) => {
           this.livres = response.data;

@@ -114,11 +114,6 @@ input {
   width: 350px;
 }
 
-.errors {
-  list-style: none;
-  color: red;
-}
-
 @media only screen and (max-width: 576px) {
   input {
     min-width: 80%;

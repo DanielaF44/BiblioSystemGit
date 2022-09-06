@@ -66,6 +66,7 @@ export default {
         this.errors.push("Email invalide");
       }
 
+      //mot de passe entre 6 et 20 charactères contenant au moins 1 nombre, une majuscule et une minuscule
       const passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
       if (!user.password || !user.password.match(passw)) {
         this.errors.push("Mot de passe invalide");
@@ -121,11 +122,6 @@ input {
 
 .buttonIns {
   width: 400px;
-}
-
-.errors {
-  list-style: none;
-  color: red;
 }
 
 @media only screen and (max-width: 576px) {
