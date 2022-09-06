@@ -1,8 +1,8 @@
 <template>
   <!-- Barre de navigation-->
   <header>
-  <NavigationNav></NavigationNav>
-</header>
+    <NavigationNav></NavigationNav>
+  </header>
   <router-view />
 </template>
 
@@ -11,11 +11,6 @@ import NavigationNav from "./components/NavigationNav.vue";
 export default {
   components: {
     NavigationNav,
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch("auth/logout");
-    },
   },
 };
 </script>
@@ -34,7 +29,6 @@ export default {
   color: #2c3e50;
   margin: 0;
   padding: 0;
-
 }
 
 nav {
@@ -105,7 +99,7 @@ form > button {
   color: red;
 }
 
-header{
+header {
   width: 100%;
   background-color: #1b77bd;
   margin: 0;

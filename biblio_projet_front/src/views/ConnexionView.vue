@@ -13,7 +13,7 @@
         <label for="MotDePasse">Mot de passe</label>
         <input type="password" v-model="user.password" />
       </div>
-      <button class="button" v-on:click="handleLogin(user)">
+      <button class="button" v-on:click.prevent="handleLogin(user)">
         Se connecter
       </button>
       <p v-show="status" v-text="status"></p>

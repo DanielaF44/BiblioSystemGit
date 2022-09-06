@@ -10,7 +10,7 @@ import { formatDate } from "./commonFunction.js";
       <ul>
         <li>
           <span>Genre/s: </span>
-          <p class="label" v-for="genre in livre.genres"  :key="genre.nom">
+          <p class="label" v-for="genre in livre.genres" :key="genre.nom">
             {{ genre.nom }}
           </p>
         </li>
@@ -123,11 +123,11 @@ span {
   align-items: center;
 }
 
-p{
+p {
   padding: 15px;
 }
 
-img{
+img {
   width: 150px;
   height: 200px;
 }

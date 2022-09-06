@@ -78,37 +78,37 @@
             >Prêts</router-link
           >
         </li>
-            <li class="dropdown-li">
-              <router-link
-                v-if="!this.$store.state.auth.status.loggedIn"
-                to="/connexion"
-                >Se connecter</router-link
-              >
-            </li>
-            <li class="dropdown-li">
-              <router-link
-                v-if="this.$store.state.auth.status.loggedIn"
-                to="infos-user"
-                >Informations du compte</router-link
-              >
-            </li>
-            <li class="dropdown-li">
-              <router-link
-                class="button"
-                v-if="this.$store.state.auth.status.loggedIn"
-                v-on:click="logout"
-                to="/"
-              >
-                Se déconnecter</router-link
-              >
-            </li>
-            <li class="dropdown-li">
-              <router-link
-                v-if="!this.$store.state.auth.status.loggedIn"
-                to="/inscription"
-                >Créer un compte</router-link
-              >
-            </li>
+        <li class="dropdown-li">
+          <router-link
+            v-if="!this.$store.state.auth.status.loggedIn"
+            to="/connexion"
+            >Se connecter</router-link
+          >
+        </li>
+        <li class="dropdown-li">
+          <router-link
+            v-if="this.$store.state.auth.status.loggedIn"
+            to="infos-user"
+            >Informations du compte</router-link
+          >
+        </li>
+        <li class="dropdown-li">
+          <router-link
+            class="button"
+            v-if="this.$store.state.auth.status.loggedIn"
+            v-on:click="logout"
+            to="/"
+          >
+            Se déconnecter</router-link
+          >
+        </li>
+        <li class="dropdown-li">
+          <router-link
+            v-if="!this.$store.state.auth.status.loggedIn"
+            to="/inscription"
+            >Créer un compte</router-link
+          >
+        </li>
       </ul>
     </transition>
   </header>
@@ -142,6 +142,9 @@ export default {
       this.MobileNav = false;
       return;
     },
+    logout() {
+      this.$store.dispatch("auth/logout");
+    },
   },
 };
 </script>
@@ -152,15 +155,12 @@ export default {
   cursor: pointer;
 }
 
-
 .icon-div {
   transition: 0.8s ease all;
-  
 }
 
 .icon-active {
   transform: rotate(180deg);
-  
 }
 
 .dropdown-nav {
@@ -173,45 +173,41 @@ export default {
   list-style: none;
   margin-left: 0;
   padding-left: 0;
-
 }
 
-.dropdown-li{
+.dropdown-li {
   padding: 10px;
   margin: 15px;
 }
 
-li > a{
+li > a {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
   color: #fff;
 }
 
-.flexLeft-li{
+.flexLeft-li {
   flex: 5 1 0;
 }
 
-.logo-div{
+.logo-div {
   flex: 1 1 0;
 }
 
-.NavItems{
+.NavItems {
   flex: 7 1 0;
 }
 
-
-
-@media only screen and (max-width: 750px){
-  .logo-div{
+@media only screen and (max-width: 750px) {
+  .logo-div {
     flex: 1 1 0;
   }
 
-  .icon-div{
+  .icon-div {
     flex: 7 1 0;
     display: flex;
     justify-content: flex-end;
   }
-
 }
 </style>
