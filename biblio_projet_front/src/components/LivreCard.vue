@@ -97,10 +97,12 @@ export default {
 h4 {
   color: #1b77bd;
   font-weight: bold;
+  padding: 15px;
 }
 
 .label {
   display: inline-block;
+  padding: 15px;
 }
 
 ul {
@@ -111,6 +113,7 @@ ul {
 
 span {
   font-weight: bold;
+  padding: 15px;
 }
 
 .container {
@@ -118,6 +121,10 @@ span {
   justify-content: flex-start;
   margin: 20px;
   align-items: center;
+}
+
+p{
+  padding: 15px;
 }
 
 @media only screen and (max-width: 992px) {

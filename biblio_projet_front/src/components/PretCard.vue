@@ -85,7 +85,7 @@ export default {
 <style scoped>
 .pretCard {
   padding: 20px;
-  width: 95%;
+  width: 90%;
   box-shadow: 2px 2px 20px #343434;
   border-radius: 15px;
   margin-bottom: 18px;
@@ -100,6 +100,7 @@ h4 {
 
 .label {
   display: inline-block;
+  padding: 15px;
 }
 
 ul {
@@ -132,6 +133,7 @@ span {
 
 div > button {
   border-radius: 15px;
+  padding: 15px;
 }
 
 .disabled {

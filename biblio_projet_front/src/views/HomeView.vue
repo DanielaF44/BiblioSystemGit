@@ -51,11 +51,11 @@ export default {
         }
       }
 
-    if (sAuteur) {
-      if (sAuteur.length > 40 || sAuteur.includes("<", ">", "=")) {
+      if (sAuteur) {
+        if (sAuteur.length > 40 || sAuteur.includes("<", ">", "=")) {
           this.errors.push("Auteur invalide");
         }
-    }
+      }
 
       BiblioServiceFront.getResults(sGenre, sTitre, sAuteur, sLangue)
         .then((response) => {
