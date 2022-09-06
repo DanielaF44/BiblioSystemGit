@@ -29,6 +29,9 @@ public class Livre {
     @Column(name="description")
     private String description;
 
+    @Column(name="cover")
+    private String cover;
+
     @ManyToOne
     @JoinColumn(name ="langue")
     private Langue langue;
@@ -74,6 +77,14 @@ public class Livre {
 
     public Date getDatePublication() {
         return datePublication;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     public void setDatePublication(Date datePublication) {

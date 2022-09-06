@@ -6,11 +6,11 @@ import { formatDate } from "./commonFunction.js";
   <div class="livreCard">
     <h4>{{ livre.titre }}</h4>
     <div class="container">
-      <img src="https://picsum.photos/150/200" />
+      <img v-bind:src="'/public/src/assets/' + livre.cover" />
       <ul>
         <li>
           <span>Genre/s: </span>
-          <p class="label" v-for="genre in livre.genres" :key="genre.nom">
+          <p class="label" v-for="genre in livre.genres"  :key="genre.nom">
             {{ genre.nom }}
           </p>
         </li>
@@ -125,6 +125,11 @@ span {
 
 p{
   padding: 15px;
+}
+
+img{
+  width: 150px;
+  height: 200px;
 }
 
 @media only screen and (max-width: 992px) {
