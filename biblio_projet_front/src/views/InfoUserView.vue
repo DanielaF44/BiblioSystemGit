@@ -32,7 +32,7 @@ export default {
 <style scoped>
 .info-user {
   padding: 20px;
-  width: 95%;
+  width: 90%;
   box-shadow: 2px 2px 20px #343434;
   border-radius: 15px;
   margin-bottom: 18px;
