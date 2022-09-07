@@ -9,27 +9,37 @@
       </div>
       <div class="entree">
         <label for="nom">Nom</label>
-        <input v-model="user.nom" type="text" placeholder="Doe" />
+        <div class="input-div">
+          <input v-model="user.nom" type="text" placeholder="Doe" />
+        </div>
       </div>
       <div class="entree">
         <label for="prenom">Prénom</label>
-        <input v-model="user.prenom" type="text" placeholder="John" />
+        <div class="input-div">
+          <input v-model="user.prenom" type="text" placeholder="John" />
+        </div>
       </div>
       <div class="entree">
         <label for="email">E-mail</label>
-        <input
-          v-model="user.email"
-          type="text"
-          placeholder="john.doe@email.com"
-        />
+        <div class="input-div">
+          <input
+            v-model="user.email"
+            type="text"
+            placeholder="john.doe@email.com"
+          />
+        </div>
       </div>
       <div class="entree">
         <label for="mdp">Mot de passe</label>
-        <input v-model="user.password" type="password" />
+        <div class="input-div">
+          <input v-model="user.password" type="password" />
+        </div>
       </div>
       <div class="entree">
         <label for="mdp">Confirmation du mot de passe</label>
-        <input v-model="passwordConf" type="password" />
+        <div class="input-div">
+          <input v-model="passwordConf" type="password" />
+        </div>
       </div>
       <button
         class="button buttonIns"
@@ -48,7 +58,7 @@ export default {
     return {
       user: { nom: null, prenom: null, email: null, password: null },
       passwordConf: null,
-      error: null,
+      errors: [],
     };
   },
   methods: {
@@ -96,7 +106,7 @@ export default {
 <style scoped>
 .UpdateInfo {
   padding: 20px;
-  width: 95%;
+  width: 80%;
   box-shadow: 2px 2px 20px #343434;
   border-radius: 15px;
   margin-bottom: 18px;
@@ -110,6 +120,7 @@ label {
   font-weight: bold;
   min-width: 270px;
   text-align: end;
+  flex: 5 1 0;
 }
 
 input {
@@ -118,19 +129,40 @@ input {
   border-radius: 5px;
   height: 35px;
   margin-left: 20px;
+  min-width: 250px;
+}
+
+.input-div {
+  flex: 5 1 0;
+  text-align: left;
+}
+
+.entree {
+  margin: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 .buttonIns {
   width: 400px;
 }
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 768px) {
   input {
     min-width: 80%;
   }
 
+  .entree {
+    flex-direction: column;
+  }
+
   label {
     text-align: center;
+  }
+
+  .buttonIns {
+    width: 250px;
+    height: 80px;
   }
 }
 </style>

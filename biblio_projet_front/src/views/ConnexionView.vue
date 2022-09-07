@@ -2,16 +2,20 @@
   <section class="Connexion">
     <form>
       <div class="entree">
-        <label for="email">E-mail</label>
-        <input
-          type="text"
-          v-model="user.username"
-          placeholder="john.doe@email.com"
-        />
+        <label class="label" for="email">E-mail</label>
+        <div class="input-div">
+          <input
+            type="text"
+            v-model="user.username"
+            placeholder="john.doe@email.com"
+          />
+        </div>
       </div>
       <div class="entree">
-        <label for="MotDePasse">Mot de passe</label>
-        <input type="password" v-model="user.password" />
+        <label class="label" for="MotDePasse">Mot de passe</label>
+        <div class="input-div">
+          <input type="password" v-model="user.password" />
+        </div>
       </div>
       <button class="button" v-on:click.prevent="handleLogin(user)">
         Se connecter
@@ -61,7 +65,7 @@ export default {
 <style scoped>
 .Connexion {
   padding: 20px;
-  width: 95%;
+  width: 90%;
   box-shadow: 2px 2px 20px #343434;
   border-radius: 15px;
   margin-bottom: 18px;
@@ -70,11 +74,12 @@ export default {
   margin-left: 20px;
 }
 
-label {
+.label {
   padding: 20px;
   font-weight: bold;
-  min-width: 200px;
+  width: 400px;
   text-align: end;
+  flex: 5 1 0;
 }
 
 input {
@@ -83,19 +88,39 @@ input {
   border-radius: 5px;
   height: 35px;
   margin-left: 20px;
+  min-width: 250px;
+}
+
+.input-div {
+  flex: 5 1 0;
+  text-align: left;
 }
 
 form > button {
   width: 250px;
 }
 
-@media only screen and (max-width: 576px) {
+.entree {
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (max-width: 768px) {
   input {
     min-width: 80%;
   }
 
+  .entree {
+    flex-direction: column;
+  }
+
   label {
     text-align: center;
+  }
+
+  .buttonIns {
+    width: 250px;
+    height: 80px;
   }
 }
 </style>

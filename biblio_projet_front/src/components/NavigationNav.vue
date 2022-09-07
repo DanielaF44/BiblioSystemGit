@@ -134,7 +134,7 @@ export default {
     },
     checkScreen() {
       this.windowWidth = window.innerWidth;
-      if (this.windowWidth <= 750) {
+      if (this.windowWidth <= 992) {
         this.mobile = true;
         return;
       }
@@ -199,7 +199,7 @@ li > a {
   flex: 7 1 0;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 992px) {
   .logo-div {
     flex: 1 1 0;
   }
