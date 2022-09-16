@@ -6,6 +6,8 @@ import org.springframework.batch.item.ItemWriter;
 
 public class PretWriter implements ItemWriter<String> {
 
+    //stub
+    //TODO: ici le code pour afficher le resultat du job
     @Override
     public void write(List<? extends String> list) throws Exception {
         for (String data : list) {

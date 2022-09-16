@@ -6,8 +6,9 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 
 public class PretReader implements ItemReader<String>{
-
-    private String[] stringArray = { "Zero", "One", "Two", "Three", "Four", "Five" };
+    //stub
+    //TODO : ici le code pour recuperer les prets expirés
+    private String[] stringArray = {"Zero"};
 
     private int index = 0;
 
