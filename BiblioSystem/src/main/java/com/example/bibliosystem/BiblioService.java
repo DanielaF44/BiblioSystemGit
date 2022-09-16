@@ -98,9 +98,8 @@ public class BiblioService {
         PretRepository.updateDateFinPret(pretId, dateProlonge);
     }
 
-
-
     public List<Object> countExemplaire(String isbn){
         return ExemplaireRepository.findCountExemplaire(isbn);
     }
+
 }
