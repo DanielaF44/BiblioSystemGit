@@ -1,11 +1,11 @@
 <template>
-    <BarChart />
+  <BarChart />
 </template>
-  
-<script>
-  import BarChart from '@/components/BarChart.vue'
 
-  export default {
+<script>
+import BarChart from "@/components/BarChart.vue";
+
+export default {
   name: "StatView",
   components: {
     BarChart,
@@ -14,7 +14,6 @@
     return {
       prets: null,
     };
-  }
+  },
 };
-
 </script>
