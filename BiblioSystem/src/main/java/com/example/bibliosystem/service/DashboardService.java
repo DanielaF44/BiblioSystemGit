@@ -1,6 +1,7 @@
 package com.example.bibliosystem.service;
 
-import com.example.bibliosystem.PretRepository;
+import com.example.bibliosystem.LivresPlusPretesRepository;
+import com.example.bibliosystem.payload.response.LivresPlusPretesResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,9 @@ import java.util.List;
 @Service
 public class DashboardService {
     @Autowired
-    PretRepository pretRepository;
+    LivresPlusPretesRepository pretRepository;
 
-    private static final Logger logger = LoggerFactory.getLogger(DashboardService.class);
-
-    public List<Object> livresPlusPretes() {
-        logger.info("LivresPlusPretes");
+    public List<LivresPlusPretesResponse> livresPlusPretes() {
         return pretRepository.findLivresPlusPretes();
     }
 }

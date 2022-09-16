@@ -1,5 +1,6 @@
 package com.example.bibliosystem;
 
+import com.example.bibliosystem.payload.response.LivresPlusPretesResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -24,19 +25,5 @@ public interface PretRepository extends JpaRepository<Pret, String> {
     @Modifying
     @Query(value = "UPDATE pret SET date_fin = :dateProlonge, renouvele = true WHERE (pret.id = :pretId)", nativeQuery = true)
     void updateDateFinPret(Integer pretId, Date dateProlonge);
-
-
-    @Query(value = "SELECT\n" +
-            "    COUNT(pret.id) AS nbPret, \n" +
-            "    livres.isbn,\n" +
-            "    livres.titre\n" +
-            "FROM livres\n" +
-            "    inner join exemplaire on exemplaire.isbn = livres.isbn\n" +
-            "    inner join pret on pret.exemplaire_id = exemplaire.id\n" +
-            "GROUP BY livres.isbn, livres.titre\n" +
-            "ORDER by nbPret DESC\n" +
-            "LIMIT 10",
-            nativeQuery = true)
-    List<Object> findLivresPlusPretes();
 
 }

@@ -1,5 +1,6 @@
 package com.example.bibliosystem.controller;
 
+import com.example.bibliosystem.payload.response.LivresPlusPretesResponse;
 import com.example.bibliosystem.service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ public class DashboardController {
     DashboardService dashboard;
 
     @GetMapping("/livrespluspretes")
-    public List<Object> livresPlusPretes(){
+    public List<LivresPlusPretesResponse> livresPlusPretes(){
         return dashboard.livresPlusPretes();
     }
 }
