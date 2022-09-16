@@ -9,11 +9,6 @@ export default {
   name: "StatView",
   components: {
     BarChart,
-  },
-  data() {
-    return {
-      prets: null,
-    };
-  },
+  }
 };
 </script>
