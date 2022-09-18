@@ -1,6 +1,6 @@
 package com.example.bibliosystem.controller;
 
-import com.example.bibliosystem.payload.response.LivresPlusPretesResponse;
+import com.example.bibliosystem.payload.response.LivresPretesResponse;
 import com.example.bibliosystem.service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +15,15 @@ public class DashboardController {
     @Autowired
     DashboardService dashboard;
 
-    @GetMapping("/livrespluspretes")
-    public List<LivresPlusPretesResponse> livresPlusPretes(){
-        return dashboard.livresPlusPretes();
+    @GetMapping("/livrespretes")
+    public List<LivresPretesResponse> livresPretes(@RequestParam(name="ordretri", required=false) Integer ordreTri){
+        // 0 => tri ascendant ASC
+        // 1 => tri descendant DESC
+        if( ordreTri != null && ordreTri > 0){
+            ordreTri = 1;
+        }else{
+            ordreTri = 0;
+        }
+        return dashboard.livresPretes(ordreTri) ;
     }
 }

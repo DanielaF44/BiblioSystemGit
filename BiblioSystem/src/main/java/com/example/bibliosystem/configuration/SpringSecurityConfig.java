@@ -2,7 +2,6 @@ package com.example.bibliosystem.configuration;
 
 import com.example.bibliosystem.security.jwt.AuthEntryPointJwt;
 import com.example.bibliosystem.security.jwt.AuthTokenFilter;
-import com.example.bibliosystem.security.services.UserDetailsImpl;
 import com.example.bibliosystem.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -42,11 +41,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/livresbycriteria*").permitAll()
-                .antMatchers("/langue*").permitAll()
-                .antMatchers("/genre*").permitAll()
-                .antMatchers("/disponibilite*").permitAll()
-                .antMatchers("/dashboard/**").permitAll()
+               .antMatchers("/livresbycriteria*").permitAll()
+               .antMatchers("/langue*").permitAll()
+               .antMatchers("/genre*").permitAll()
+               .antMatchers("/disponibilite*").permitAll()
+               .antMatchers("/dashboard/**").permitAll()
+               .antMatchers("**/favicon.ico").permitAll()
                 .antMatchers("/prets*").hasRole("USER") // if you want to have pret for authentication
                 //.antMatchers("/prets*").permitAll()
                 .anyRequest().authenticated();
