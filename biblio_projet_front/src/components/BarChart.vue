@@ -1,4 +1,5 @@
 <template>
+  <!--TODO styles-->
   <!-- le chargement du chart se fait directement alors qu'on fait un appel asynchrone au service
   il faut donc conditioner l'affichage avec un if afin de ne charger le chart qu'une fois le
   résultat du service reçu -->
@@ -11,6 +12,18 @@
     v-if="livresMoinsLoaded"
     :chart-data="livresMoinsChartData"
     :styles="livresmoinsStyles"
+  />
+
+  <Bar
+    v-if="auteursPlusLoaded"
+    :chart-data="auteursPlusChartData"
+    :styles="auteursPlusStyles"
+  />
+
+  <Bar
+    v-if="auteursMoinsLoaded"
+    :chart-data="auteursMoinsChartData"
+    :styles="auteursMoinsStyles"
   />
 </template>
 
@@ -48,6 +61,10 @@ export default {
       livresMoinsLoaded: false,
       livresMoinsChartData: null,
       livresMoinsPretesData: null,
+
+      auteursPlusLoaded: false,
+      auteursPlusChartData: null,
+      auteursPlusLusData: null,
     };
   },
   async mounted() {
@@ -96,6 +113,60 @@ export default {
         };
 
         this.livresMoinsLoaded = true;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    //recupère les auteurs les plus lus
+    BiblioServiceFront.getAuteursLus(1)
+      .then((response) => {
+        this.auteursPlusLusData = response.data;
+        //on recupere les valeurs de l'axe des x => auteur
+        const x = this.auteursPlusLusData.map(
+          (aData) => aData.prenom + " " + aData.nom
+        );
+        //on recupere les valeurs de l'axe des y => nombre de prets
+        const y = this.auteursPlusLusData.map((aData) => aData.nbPret);
+        this.auteursPlusChartData = {
+          labels: x,
+          datasets: [
+            {
+              label: "Nombre de prêts",
+              backgroundColor: "#f87979",
+              data: y,
+            },
+          ],
+        };
+
+        this.auteursPlusLoaded = true;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    //recupère les auteurs les plus lus
+    BiblioServiceFront.getAuteursLus(0)
+      .then((response) => {
+        this.auteursMoinsLusData = response.data;
+        //on recupere les valeurs de l'axe des x => auteur
+        const x = this.auteursMoinsLusData.map(
+          (aData) => aData.prenom + " " + aData.nom
+        );
+        //on recupere les valeurs de l'axe des y => nombre de prets
+        const y = this.auteursMoinsLusData.map((aData) => aData.nbPret);
+        this.auteursMoinsChartData = {
+          labels: x,
+          datasets: [
+            {
+              label: "Nombre de prêts",
+              backgroundColor: "#f87979",
+              data: y,
+            },
+          ],
+        };
+
+        this.auteursMoinsLoaded = true;
       })
       .catch((error) => {
         console.log(error);
