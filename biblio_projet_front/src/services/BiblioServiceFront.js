@@ -62,4 +62,16 @@ export default {
     let sUrl = "/disponibilite?isbn=" + sIsbn;
     return apiClient.get(sUrl);
   },
+
+  //Stats
+  getLivresPretes(iOrdreTri) {
+    let sUrl = "/dashboard/livrespretes?ordretri=";
+    let iparam = 0;
+    //input sanitizing
+    if (iOrdreTri > 0) {
+      iparam = 1;
+    }
+    sUrl = sUrl + iparam;
+    return apiClient.get(sUrl);
+  },
 };
