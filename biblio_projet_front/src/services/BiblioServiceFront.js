@@ -74,4 +74,15 @@ export default {
     sUrl = sUrl + iparam;
     return apiClient.get(sUrl);
   },
+
+  getAuteursLus(iOrdreTri) {
+    let sUrl = "/dashboard/auteurslus?ordretri=";
+    let iparam = 0;
+    //input sanitizing
+    if (iOrdreTri > 0) {
+      iparam = 1;
+    }
+    sUrl = sUrl + iparam;
+    return apiClient.get(sUrl);
+  },
 };
