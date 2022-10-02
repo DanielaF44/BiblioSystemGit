@@ -18,6 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Classe de gestion des accès aux différents services
+ */
 
 @Configuration
 @EnableWebSecurity
@@ -26,6 +29,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         // jsr250Enabled = true,
         prePostEnabled = true)
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     UserDetailsServiceImpl userDetailsService;
     @Autowired
@@ -35,6 +39,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return new AuthTokenFilter();
     }
 
+    /**
+     * Methode heritée de WebSecurityConfigurerAdapter
+     * Définition des accès aux différentes URLs de l'application
+     * @param http Object de configuration
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
        http.cors().and().csrf().disable()
@@ -45,24 +55,37 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                .antMatchers("/langue*").permitAll()
                .antMatchers("/genre*").permitAll()
                .antMatchers("/disponibilite*").permitAll()
-               .antMatchers("/dashboard/**").permitAll()
                .antMatchers("**/favicon.ico").permitAll()
-                .antMatchers("/prets*").hasRole("USER")
+               .antMatchers("/prets*").hasRole("USER")
+               .antMatchers("/dashboard/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
+    /**
+     * @return le nom du role sans sont prefixe par défaut
+     */
     @Bean
     GrantedAuthorityDefaults grantedAuthorityDefaults() {
         return new GrantedAuthorityDefaults(""); // Remove the ROLE_ prefix
     }
 
+    /**
+     * Gestion de l'authentification
+     * Ici on gère le chiffrage du mot de passe
+     * @param auth object d'authentification
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
+    /**
+     * Configuration de l'algorithme de chiffrement du mot de passe
+     * @return objet de chiffrement
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
