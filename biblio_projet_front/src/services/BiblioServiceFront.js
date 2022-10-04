@@ -48,7 +48,6 @@ export default {
 
   getPrets() {
     let sUrl = "/prets";
-    console.log(JSON.parse(localStorage.getItem("user")));
     return axios.get(API_URL + sUrl, { headers: authHeader() });
   },
 
@@ -71,7 +70,7 @@ export default {
       iparam = 1;
     }
     sUrl = sUrl + iparam;
-    return apiClient.get(sUrl);
+    return axios.get(API_URL + sUrl, { headers: authHeader() });
   },
 
   getAuteursLus(iOrdreTri) {
@@ -82,6 +81,6 @@ export default {
       iparam = 1;
     }
     sUrl = sUrl + iparam;
-    return apiClient.get(sUrl);
+    return axios.get(API_URL + sUrl, { headers: authHeader() });
   },
 };
