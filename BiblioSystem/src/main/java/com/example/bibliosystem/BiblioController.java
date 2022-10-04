@@ -4,16 +4,22 @@ import com.example.bibliosystem.payload.response.MessageResponse;
 import com.example.bibliosystem.service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080"})
 @RestController
 public class BiblioController {
     @Autowired
     BiblioService biblio;
+
+    @Autowired
+    UserRepository userRepository;
 
     /**
      * Cette méthode du controlleur permet d'envoyer la liste des livres présents en base de données dans la table "livres"
@@ -97,7 +103,16 @@ public class BiblioController {
 
     @RolesAllowed("USER")
     @GetMapping("prets")
-    public List<Pret> showPret(@RequestParam(name="utilisateurId") Integer utilisateurId){
+    public List<Pret> showPret(){
+        //On récupère un objet user qui correspond à l'utilisateur à l'origine de la requête
+        UserDetails userDetails =
+                (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        //On récupère l'ID du user
+        Optional<User> optUser =  userRepository.findByEmail(userDetails.getUsername());
+        Integer utilisateurId = optUser.map( user -> user.getUserId()).orElse(null);
+
+        //On appelle la méthode showPret en passant l'id de l'utilisateur connecté en paramètre
         return biblio.showPret(utilisateurId);
     }
 
