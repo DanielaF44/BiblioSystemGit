@@ -23,7 +23,10 @@
           </li>
           <li>
             <router-link
-              v-if="this.$store.state.auth.status.loggedIn && this.$store.state.auth.user.roles[0] == 'ADMIN'"
+              v-if="
+                this.$store.state.auth.status.loggedIn &&
+                this.$store.state.auth.user.roles[0] == 'ADMIN'
+              "
               to="/dashboard"
               >dashboard</router-link
             >
