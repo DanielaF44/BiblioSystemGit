@@ -47,8 +47,7 @@ export default {
   },
 
   getPrets() {
-    // TODO : use the real user id when we have it
-    let sUrl = "/prets?utilisateurId=2";
+    let sUrl = "/prets";
     console.log(JSON.parse(localStorage.getItem("user")));
     return axios.get(API_URL + sUrl, { headers: authHeader() });
   },
