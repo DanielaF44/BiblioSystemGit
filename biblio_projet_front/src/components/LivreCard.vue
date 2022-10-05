@@ -6,7 +6,7 @@ import { formatDate } from "./commonFunction.js";
   <div class="livreCard">
     <h4>{{ livre.titre }}</h4>
     <div class="container">
-      <img v-bind:src="'/public/src/assets/' + livre.cover" />
+      <img :src="require('@/assets/' + livre.cover)" v-bind:alt="livre.cover" />
       <ul>
         <li>
           <span>Genre/s: </span>
