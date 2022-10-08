@@ -72,7 +72,7 @@ export default {
         this.errors.push("Prenom invalide");
       }
 
-      if (!user.email || user.email.includes("@", ".")) {
+      if (!user.email || !user.email.includes("@", ".")) {
         this.errors.push("Email invalide");
       }
 
