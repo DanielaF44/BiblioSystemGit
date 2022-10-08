@@ -8,6 +8,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
+/**
+ * Classe de gestion des prêts à l'origine de l'envoi d'un mail de relance
+ */
 public class PretProcessor implements ItemProcessor<String, String> {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);

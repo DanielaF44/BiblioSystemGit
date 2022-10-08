@@ -43,7 +43,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
      * Methode heritée de WebSecurityConfigurerAdapter
      * Définition des accès aux différentes URLs de l'application
      * @param http Object de configuration
-     * @throws Exception
+     * @throws Exception exception issue d'un appel au service
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -56,6 +56,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                .antMatchers("/genre*").permitAll()
                .antMatchers("/disponibilite*").permitAll()
                .antMatchers("**/favicon.ico").permitAll()
+               .antMatchers("**/assets/**").permitAll()
                .antMatchers("/prets*").access("hasRole('USER') or hasRole('ADMIN')")
                .antMatchers("/dashboard/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
@@ -75,7 +76,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
      * Gestion de l'authentification
      * Ici on gère le chiffrage du mot de passe
      * @param auth object d'authentification
-     * @throws Exception
+     * @throws Exception exception
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

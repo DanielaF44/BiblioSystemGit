@@ -8,6 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
+
+/**
+ * Classe "point d'entrée" pour authentifcation avec JWT
+ * Toute requête non autorisée retourne une réponse avec une erreur 401
+ */
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
@@ -15,6 +20,6 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
         logger.error("Unauthorized error: {}", authException.getMessage());
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Erreur: non autorisé");
     }
 }

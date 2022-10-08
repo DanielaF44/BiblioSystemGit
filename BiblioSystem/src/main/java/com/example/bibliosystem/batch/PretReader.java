@@ -5,6 +5,9 @@ import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 
+/**
+ * Classe de lecture des prêts expirés pour job de relance
+ */
 public class PretReader implements ItemReader<String>{
     //stub
     //TODO : ici le code pour recuperer les prets expirés

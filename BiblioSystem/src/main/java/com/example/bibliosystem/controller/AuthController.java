@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 
 /**
- * Controlleur responsable de l'authentification et inscriprion des utilisateurs
+ * controleur responsable de l'authentification et inscriprion des utilisateurs
  */
 @CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080"})
 @RestController

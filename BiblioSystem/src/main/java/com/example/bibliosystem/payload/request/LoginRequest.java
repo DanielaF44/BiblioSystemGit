@@ -1,7 +1,9 @@
 package com.example.bibliosystem.payload.request;
 
 
-
+/**
+ * Définition de la signature d'une requête de connexion d'un utilisateur
+ */
 public class LoginRequest {
 
     //en réalité on authentifie l'utilisateur avec son adresse email => username = email

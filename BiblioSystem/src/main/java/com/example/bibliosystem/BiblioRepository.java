@@ -8,7 +8,7 @@ import java.util.List;
 public interface BiblioRepository extends JpaRepository<Livre, String>{
 
     /**
-     * Methode qui execute une requete SQL dans la base de données afin de retourner une liste de livres filtrées selon
+     * Methode qui execute une requete SQL dans la base de données afin de retourner une liste de livres filtrés selon
      * les paramètres transmis par le service BiblioService.
      *
      * @param  titre  le titre du livre recherché

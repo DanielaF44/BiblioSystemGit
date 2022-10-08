@@ -21,11 +21,19 @@ public class BatchConfig {
     private final String JOB_NAME = "jobRelance";
     private final String STEP_NAME = "relanceStep";
 
+    /**
+     * Création d'un job de relance
+     * @return un objet job construit par un factory et lancé dans la foulé
+     */
     @Bean
     public Job jobRelance(){
         return jobBuilderFactory.get(JOB_NAME).start(relanceStep()).build();
     }
 
+    /**
+     * Etape de job
+     * @return une étape de job de relance
+     */
     @Bean
     public Step relanceStep(){
         return stepBuilderFactory.get(STEP_NAME).<String, String>chunk(1)

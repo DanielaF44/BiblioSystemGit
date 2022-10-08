@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.batch.item.ItemWriter;
 
+/**
+ * Classe de logging / tracking du job de relance
+ */
 public class PretWriter implements ItemWriter<String> {
 
     //stub

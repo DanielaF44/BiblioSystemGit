@@ -12,6 +12,9 @@ import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * controleur responsable de la gestion de la bibliothèque
+ */
 @CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080"})
 @RestController
 public class BiblioController {
@@ -22,11 +25,8 @@ public class BiblioController {
     UserRepository userRepository;
 
     /**
-     * Cette méthode du controlleur permet d'envoyer la liste des livres présents en base de données dans la table "livres"
-     *
+     * Cette méthode du controleur permet d'envoyer la liste des livres présents en base de données dans la table "livres"
      * @return List<Livre> appelle la methode showLivre du Service qui retourne la liste des livres
-     *
-     *²
      */
     @GetMapping("livres")
     public List<Livre> showLivre(){
@@ -34,11 +34,8 @@ public class BiblioController {
 
     }
     /**
-     * Cette méthode du controlleur permet d'envoyer la liste des genres présents en base de données dans la table "genre"
-     *
+     * Cette méthode du controleur permet d'envoyer la liste des genres présents en base de données dans la table "genre"
      * @return List<Genre> appelle la methode showGenre du Service qui retourne la liste des genres
-     *
-     *
      */
     @GetMapping("genres")
     public List<Genre> showGenre(){
@@ -46,11 +43,8 @@ public class BiblioController {
     }
 
     /**
-     * Cette méthode du controlleur permet d'envoyer la liste des langues présentes en base de données dans la table "langue"
-     *
+     * Cette méthode du controleur permet d'envoyer la liste des langues présentes en base de données dans la table "langue"
      * @return List<Langue> appelle la methode showLangue du Service qui retourne la liste des langues
-     *
-     *
      */
     @GetMapping("langues")
     public List<Langue> showLangue(){
@@ -59,14 +53,12 @@ public class BiblioController {
 
 
     /**
-     * Cette méthode du controlleur permet de recupérer les critères de filtrage saisis par l'utilisateur à
+     * Cette méthode du controleur permet de recupérer les critères de filtrage saisis par l'utilisateur à
      * partir du Front end. Les critères "titre", "genre", "langue" sont passés à la méthode showRecherche.
-     *
      * @param  titre  le titre du livre recherché
      * @param  genre le genre du livre recherché
      * @param langue  la langue du livre recherché
      * @return List<Livre> retourne la liste de livres filtrée
-     *
      */
     @GetMapping("livresbycriteria")
     public List<Livre> showRecherche(@RequestParam(name="titre", required=false) String titre,
@@ -96,11 +88,21 @@ public class BiblioController {
         return biblio.showRecherche(titre, auteur, genre, langue);
     }
 
+    /**
+     * Cette méthode du controleur permet d'ajouter un livre en BD
+     * @param newLivre un livre
+     */
     @PostMapping("livres")
     public void addLivre(@RequestBody Livre newLivre){
         biblio.addLivre(newLivre);
     }
 
+    /**
+     * Cette méthode du controleur permet de récupérer les prêts liés à l'utilisateur qui en fait la demande
+     * Pour des raisons de sécurité on récupère les données d'identification via le SecurityContextHolder
+     * On ne passe pas d'informations de l'utilisateur dans le corps de la requête
+     * @return
+     */
     @RolesAllowed("USER")
     @GetMapping("prets")
     public List<Pret> showPret(){
@@ -116,12 +118,22 @@ public class BiblioController {
         return biblio.showPret(utilisateurId);
     }
 
+    /**
+     * Cette méthode du controleur permet à un utilisateur de prolonger un prêt
+     * @param pretId id du prêt à prolonger
+     */
     @RolesAllowed("USER")
     @PostMapping("prets")
     public void prolongePret(@RequestParam(name="pretId") Integer pretId){
         biblio.updateDateFin(pretId);
     }
 
+    /**
+     * Cette méthode  du controleur permet d'afficher les exemplaires disponibles d'un livre
+     * Axe d'amélioration : faire un showpret qui prenne en compte les dispo
+     * @param isbn l'isbn d'un livre
+     * @return la liste des exemplaires dispos par bibliothèque
+     */
     @GetMapping("disponibilite")
     public List<Object> showDispos(@RequestParam(name="isbn") String isbn){
         return biblio.countExemplaire(isbn);

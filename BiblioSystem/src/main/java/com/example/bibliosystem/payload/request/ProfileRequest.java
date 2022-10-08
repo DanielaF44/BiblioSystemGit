@@ -2,6 +2,11 @@ package com.example.bibliosystem.payload.request;
 
 import java.util.Set;
 
+
+/**
+ * Définition de la signature d'une requête de mise à jour du profil utilisateur
+ *
+ */
 public class ProfileRequest {
 
     private String nom;

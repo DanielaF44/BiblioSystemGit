@@ -7,6 +7,10 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Classe de mapping pour gestion des données de prêt
+ * Utilisation dans le service de mail de relance
+ */
 public class PretMapper implements RowMapper<Pret> {
     @Override
     public Pret mapRow(ResultSet rs, int rowNum) throws SQLException{
