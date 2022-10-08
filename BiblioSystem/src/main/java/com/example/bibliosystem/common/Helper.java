@@ -23,6 +23,6 @@ public class Helper {
                 || sToCheck.length() > iTo){
             return false;
         }
-        return false;
+        return true;
     }
 }
