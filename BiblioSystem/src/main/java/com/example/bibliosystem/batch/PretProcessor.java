@@ -1,12 +1,11 @@
 package com.example.bibliosystem.batch;
+import com.example.bibliosystem.configuration.EmailSenderConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.bibliosystem.security.jwt.AuthEntryPointJwt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 
 /**
  * Classe de gestion des prêts à l'origine de l'envoi d'un mail de relance
@@ -22,7 +21,7 @@ public class PretProcessor implements ItemProcessor<String, String> {
     //TODO : ici le code d'envoie d'email quand le probleme aura été identifié
 
     @Autowired
-    EmailSenderService emailService;
+    EmailSenderConfig emailService;
 
     @Override
     public String process(String data) throws Exception {

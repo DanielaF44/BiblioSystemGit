@@ -1,7 +1,7 @@
 package com.example.bibliosystem.security.services;
 
-import com.example.bibliosystem.User;
-import com.example.bibliosystem.UserRepository;
+import com.example.bibliosystem.entity.User;
+import com.example.bibliosystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

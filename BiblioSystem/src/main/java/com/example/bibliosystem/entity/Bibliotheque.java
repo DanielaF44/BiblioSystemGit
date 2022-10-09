@@ -1,4 +1,4 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.entity;
 
 
 import javax.persistence.Column;

@@ -1,7 +1,8 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.entity;
+
+import com.example.bibliosystem.common.ERole;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "role")

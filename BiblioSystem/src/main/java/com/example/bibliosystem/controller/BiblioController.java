@@ -1,9 +1,9 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.controller;
 
-import com.example.bibliosystem.payload.response.MessageResponse;
-import com.example.bibliosystem.service.DashboardService;
+import com.example.bibliosystem.entity.*;
+import com.example.bibliosystem.repository.UserRepository;
+import com.example.bibliosystem.service.BiblioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,9 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.entity;
+
+import com.example.bibliosystem.entity.Auteur;
+import com.example.bibliosystem.entity.Editeur;
+import com.example.bibliosystem.entity.Genre;
+import com.example.bibliosystem.entity.Langue;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package com.example.bibliosystem.service;
 
-import com.example.bibliosystem.AuteursLusRepository;
-import com.example.bibliosystem.LivresPretesRepository;
+import com.example.bibliosystem.repository.AuteursLusRepository;
+import com.example.bibliosystem.repository.LivresPretesRepository;
 import com.example.bibliosystem.payload.response.AuteursLusResponse;
 import com.example.bibliosystem.payload.response.LivresPretesResponse;
 import org.springframework.beans.factory.annotation.Autowired;

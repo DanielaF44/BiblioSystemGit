@@ -1,4 +1,4 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,29 +7,25 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Editeur {
+public class Langue {
 
     @Id
-    @Column(name = "id")
-    int id;
-
-    @Column(name = "nom")
+    @Column(name ="nom")
     String nom;
 
-    public Editeur(int id, String nom) {
-        this.id = id;
+    public Langue(String nom) {
         this.nom = nom;
     }
 
-    public Editeur(){
+    public Langue(){
 
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getNom() {
         return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 }

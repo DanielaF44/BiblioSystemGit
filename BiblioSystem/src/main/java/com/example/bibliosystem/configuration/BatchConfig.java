@@ -1,5 +1,8 @@
-package com.example.bibliosystem.batch;
+package com.example.bibliosystem.configuration;
 
+import com.example.bibliosystem.batch.PretProcessor;
+import com.example.bibliosystem.batch.PretReader;
+import com.example.bibliosystem.batch.PretWriter;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;

@@ -1,5 +1,6 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.repository;
 
+import com.example.bibliosystem.entity.Auteur;
 import com.example.bibliosystem.payload.response.AuteursLusResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

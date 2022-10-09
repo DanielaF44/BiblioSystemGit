@@ -1,12 +1,5 @@
 package com.example.bibliosystem.batch;
 
-import com.example.bibliosystem.Exemplaire;
-import com.example.bibliosystem.Pret;
-import org.springframework.jdbc.core.RowMapper;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 /**
  * Classe de mapping pour gestion des données de prêt
  * Utilisation dans le service de mail de relance

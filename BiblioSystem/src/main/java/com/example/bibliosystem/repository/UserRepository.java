@@ -1,9 +1,9 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.repository;
 
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.example.bibliosystem.User;
+import com.example.bibliosystem.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {

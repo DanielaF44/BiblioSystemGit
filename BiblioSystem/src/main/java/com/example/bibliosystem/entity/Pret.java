@@ -1,5 +1,6 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.entity;
 
+import com.example.bibliosystem.entity.Exemplaire;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;

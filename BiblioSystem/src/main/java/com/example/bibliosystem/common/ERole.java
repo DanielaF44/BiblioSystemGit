@@ -1,4 +1,4 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.common;
 
 /**
  * Enumération pour gestion des rôles des utilisateurs

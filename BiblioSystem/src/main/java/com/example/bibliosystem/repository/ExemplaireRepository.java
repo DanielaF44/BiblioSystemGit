@@ -1,5 +1,6 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.repository;
 
+import com.example.bibliosystem.entity.Exemplaire;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

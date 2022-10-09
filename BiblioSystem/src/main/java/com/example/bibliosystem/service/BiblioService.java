@@ -1,9 +1,12 @@
-package com.example.bibliosystem;
+package com.example.bibliosystem.service;
 
+import com.example.bibliosystem.entity.Genre;
+import com.example.bibliosystem.entity.Langue;
+import com.example.bibliosystem.entity.Livre;
+import com.example.bibliosystem.entity.Pret;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +14,7 @@ import java.util.List;
 @Service
 public class BiblioService {
     @Autowired
-    BiblioRepository BiblioRepository;
+    com.example.bibliosystem.repository.BiblioRepository BiblioRepository;
 
     /**
      * Cette méthode permet de transmettre au controleur la liste des livres recupérés depuis la base de données
@@ -35,7 +38,7 @@ public class BiblioService {
      * @return List<Livre> retourne la liste des livres
      */
     @Autowired
-    ExemplaireRepository ExemplaireRepository;
+    com.example.bibliosystem.repository.ExemplaireRepository ExemplaireRepository;
 
     public List<Livre> showRecherche(String genre, String auteur, String titre, String langue){
 
@@ -44,7 +47,7 @@ public class BiblioService {
     }
 
     @Autowired
-    GenreRepository GenreRepository;
+    com.example.bibliosystem.repository.GenreRepository GenreRepository;
 
     /**
      * Cette méthode permet de transmettre au controleur la liste des genres recupérés depuis la base de données
@@ -56,7 +59,7 @@ public class BiblioService {
 
 
     @Autowired
-    LangueRepository LangueRepository;
+    com.example.bibliosystem.security.LangueRepository LangueRepository;
 
     /**
      * Cette méthode permet de transmettre au controleur la liste des langues recupérées depuis la base de données
@@ -67,7 +70,7 @@ public class BiblioService {
     }
 
     @Autowired
-    PretRepository PretRepository;
+    com.example.bibliosystem.repository.PretRepository PretRepository;
     /**
      * Cette méthode permet de transmettre au controleur la liste des prêts recupérées depuis la base de données
      * pour un utilisateur
