@@ -3,13 +3,11 @@ package com.example.bibliosystem.configuration;
 import com.example.bibliosystem.batch.PretProcessor;
 import com.example.bibliosystem.batch.PretReader;
 import com.example.bibliosystem.batch.PretWriter;
-import com.example.bibliosystem.entity.custom.UserPretRelance;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.item.data.RepositoryItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,32 +50,4 @@ public class BatchConfig {
                 .processor( pretProcessor )
                 .writer( new PretWriter()).build();
     }
-
-
- /*
-    private ItemProcessor<Pret, Pret> pretProcessor() {
-        //
-        // return new PretProcessor();
-    }
-
-    @Bean
-    public ItemReader<Pret> pretReader() {
-        String sql= "SELECT * FROM pret";
-
-        return new JdbcCursorItemReaderBuilder<Pret>()
-                .name("pretReader")
-                .dataSource(dataSource)
-                .sql(sql)
-                .rowMapper(new PretMapper())
-                .build();
-    }
-
-*/
-
-
-
-
-
-
-
 }

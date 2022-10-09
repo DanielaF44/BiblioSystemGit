@@ -1,5 +1,4 @@
 package com.example.bibliosystem.batch;
-import com.example.bibliosystem.configuration.EmailSenderConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.bibliosystem.security.jwt.AuthEntryPointJwt;
 import org.slf4j.Logger;
@@ -25,13 +24,17 @@ public class PretProcessor implements ItemProcessor<String, String> {
 
         SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setTo("vvincent87@gmail.com");
-        message.setSubject("Test Simple Email");
-        message.setText("Hello, Im testing Simple Email");
+        message.setTo(data);
+        message.setSubject("Bibliothèque de Pontault-Combault : Livres non rendus");
+        message.setText("Bonjour,\n" +
+                        "Vous avez emprunté un ou plusieurs livres que vous n'avez pas retourné.\n" +
+                        "Nouv vous invitons à régulariser la situation dans les plus brefs délais\n" +
+                        "Cordialement,\n" +
+                        "Responsable des stocks de la bibliothèque de Pontault-Combault");
 
         this.emailSender.send(message);
 
-        return "Email Sent!";
+        return "Email de relance envoyé à " + data;
     }
 
 }

@@ -32,13 +32,12 @@ public class SchedulerConfig {
      * Lancement périodique du mail de relance des prêts expirés
      * @throws Exception Exception liée au job de relance
      */
-    @Scheduled(cron = "0 0/1 * * * *")
+    //Job planifié tous les jours à 9h
+    @Scheduled(cron = "0 9 ? * *")
     public void scheduleByFixedRate() throws Exception {
-        System.out.println("Batch job starting");
         JobParameters jobParameters = new JobParametersBuilder()
                 .addString("time", format.format(Calendar.getInstance().getTime())).toJobParameters();
         jobLauncher.run(job, jobParameters);
-        System.out.println("Batch job executed successfully ");
     }
 
 }
