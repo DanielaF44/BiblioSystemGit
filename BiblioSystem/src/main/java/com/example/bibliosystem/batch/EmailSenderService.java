@@ -23,7 +23,7 @@ public class EmailSenderService{
      * @param subject sujet du mail
      * @param text contenu du mail
      */
-    public void sendEmail(String to, String subject, String text){
+    /*public void sendEmail(String to, String subject, String text){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("biblio@biblio.com");
         message.setTo(to);
@@ -31,6 +31,6 @@ public class EmailSenderService{
         message.setText(text);
         javaMailSender.send(message);
 
-    }
+    }*/
 
 }

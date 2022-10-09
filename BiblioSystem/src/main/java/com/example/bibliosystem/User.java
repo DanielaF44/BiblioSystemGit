@@ -50,16 +50,6 @@ public class User {
     public User() {
     }
 
-    public User(String email, String mdp) {
-        this.email = email;
-        this.mdp = mdp;
-    }
-
-    public User(String username, String email, String mdp) {
-        this.email = email;
-        this.mdp = mdp;
-    }
-
     public User(String nom, String prenom, String email, String mdp) {
         this.nom = nom;
         this.prenom = prenom;

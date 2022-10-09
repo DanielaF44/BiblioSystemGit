@@ -21,12 +21,6 @@ public class Exemplaire {
     @OneToOne(mappedBy = "exemplaireId")
     private Pret pretId;
 
-    public Exemplaire(Integer exemplaireId, Livre isbn) {
-        this.exemplaireId = exemplaireId;
-        this.isbn = isbn;
-        this.pretId = pretId;
-    }
-
     public Exemplaire(){
 
     }

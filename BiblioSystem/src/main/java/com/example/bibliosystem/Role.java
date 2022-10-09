@@ -33,19 +33,4 @@ public class Role {
         this.name = name;
     }
 
-    /*
-    @ManyToMany(mappedBy = "roles")
-    private Collection<User> users;
-
-
-
-    public Collection<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Collection<User> users) {
-        this.users = users;
-    }
-*/
-
 }

@@ -13,9 +13,11 @@ public class PretWriter implements ItemWriter<String> {
     //TODO: ici le code pour afficher le resultat du job
     @Override
     public void write(List<? extends String> list) throws Exception {
-        for (String data : list) {
+    /*    for (String data : list) {
             System.out.println("MyCustomWriter    : Writing data    : " + data);
         }
         System.out.println("MyCustomWriter    : Writing data    : completed");
+
+     */
     }
 }

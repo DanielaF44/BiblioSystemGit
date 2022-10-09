@@ -220,7 +220,7 @@ public class AuthController {
         }
 
         if (!Helper.checkStringLengthBetween(sPrenom,2,100)) {
-            messages = messages.concat( "Nom invalide |" );
+            messages = messages.concat( "Prebom invalide |" );
         }
 
         if(sEmail.equals("null")

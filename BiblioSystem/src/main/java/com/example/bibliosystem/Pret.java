@@ -23,22 +23,11 @@ public class Pret {
     @Column(name = "renouvele")
     private Boolean renouvele;
 
-    //@ManyToOne
-    //@JoinColumn(name ="utilisateur_id")
-    //private User utilisateurId;
 
     @JsonManagedReference
     @OneToOne
     @JoinColumn(name ="exemplaire_id", referencedColumnName = "id")
     private Exemplaire exemplaireId;
-
-    public Pret(Date dateDebut, Date dateFin, Boolean renouvele, /* User utilisateurId,*/ Exemplaire exemplaireId) {
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.renouvele = renouvele;
-        //this.utilisateurId = utilisateurId;
-        this.exemplaireId = exemplaireId;
-    }
 
     public Pret(){
 
@@ -75,14 +64,6 @@ public class Pret {
     public void setRenouvele(Boolean renouvele) {
         this.renouvele = renouvele;
     }
-
- //   public User getUtilisateurId() {
- //       return utilisateurId;
- //   }
-
-//    public void setUtilisateurId(User utilisateurId) {
- //       this.utilisateurId = utilisateurId;
- //   }
 
     public Exemplaire getExemplaireId() {
         return exemplaireId;

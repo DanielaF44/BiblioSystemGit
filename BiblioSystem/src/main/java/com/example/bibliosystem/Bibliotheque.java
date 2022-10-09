@@ -14,10 +14,6 @@ public class Bibliotheque {
     @Column(name = "nom")
     private String nom;
 
-    public Bibliotheque(String nom) {
-        this.nom = nom;
-    }
-
     public Bibliotheque(){
 
     }

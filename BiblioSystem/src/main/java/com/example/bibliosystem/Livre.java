@@ -46,13 +46,6 @@ public class Livre {
     //@ManyToOne
     //@JoinColumn(name ="exemplaires")
     //private List<Exemplaire> exemplaires = new ArrayList<>();
-
-    public Livre(String isbn, String titre, Date datePublication) {
-        this.isbn = isbn;
-        this.titre = titre;
-        this.datePublication = datePublication;
-    }
-
     public Livre() {
     }
 

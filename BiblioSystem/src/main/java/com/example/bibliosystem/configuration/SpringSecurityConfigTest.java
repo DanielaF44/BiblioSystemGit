@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,17 +20,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * Classe de gestion des accès aux différents services
+ * Classe de gestion des accès aux différents services en mode TEST
  */
 
-@Profile("!TEST") // If we don't use the TEST profile, we use this bean!
+@Profile("TEST") // If we don't use the TEST profile, we use this bean!
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
         // securedEnabled = true,
         // jsr250Enabled = true,
         prePostEnabled = true)
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SpringSecurityConfigTest extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
@@ -41,26 +41,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return new AuthTokenFilter();
     }
 
-    /**
-     * Methode heritée de WebSecurityConfigurerAdapter
-     * Définition des accès aux différentes URLs de l'application
-     * @param http Object de configuration
-     * @throws Exception exception issue d'un appel au service
-     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
        http.cors().and().csrf().disable()
                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-               .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-               .antMatchers("/livresbycriteria*").permitAll()
-               .antMatchers("/langue*").permitAll()
-               .antMatchers("/genre*").permitAll()
-               .antMatchers("/disponibilite*").permitAll()
-               .antMatchers("**/favicon.ico").permitAll()
-               .antMatchers("**/assets/**").permitAll()
-               .antMatchers("/prets*").access("hasRole('USER') or hasRole('ADMIN')")
-               .antMatchers("/dashboard/**").hasRole("ADMIN")
+               .authorizeRequests().antMatchers("/**").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

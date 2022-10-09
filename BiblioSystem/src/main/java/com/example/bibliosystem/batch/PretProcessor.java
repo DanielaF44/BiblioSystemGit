@@ -34,7 +34,7 @@ public class PretProcessor implements ItemProcessor<String, String> {
         message.setText("text");
  //       mailSender.send(message);
 
-        emailService.sendEmail("vvincent87@gmail.com", "subject", "text");
+        //emailService.sendEmail("vvincent87@gmail.com", "subject", "text");
         System.out.println("MyCustomProcessor : Processing data : "+data);
         data = data.toUpperCase();
         logger.info("MyCustomProcessor : Processing data : "+data);

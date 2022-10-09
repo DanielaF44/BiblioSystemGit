@@ -11,8 +11,8 @@ import java.sql.SQLException;
  * Classe de mapping pour gestion des données de prêt
  * Utilisation dans le service de mail de relance
  */
-public class PretMapper implements RowMapper<Pret> {
-    @Override
+public class PretMapper /*implements RowMapper<Pret>*/ {
+   /* @Override
     public Pret mapRow(ResultSet rs, int rowNum) throws SQLException{
         Pret pret = new Pret();
         pret.setPret_id(rs.getInt("id"));
@@ -22,5 +22,5 @@ public class PretMapper implements RowMapper<Pret> {
         pret.setExemplaireId((Exemplaire) rs.getObject("exemplaire_id"));
         return pret;
 
-    }
+    }*/
 }

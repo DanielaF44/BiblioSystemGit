@@ -18,14 +18,20 @@ public class Auteur {
     @Column(name = "prenom")
     String prenom;
 
-    public Auteur(Integer id, String nom, String prenom) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-    }
-
     public Auteur(){
 
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public Integer getId() {
