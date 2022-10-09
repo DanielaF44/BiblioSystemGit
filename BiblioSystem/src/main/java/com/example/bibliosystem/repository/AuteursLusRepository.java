@@ -1,7 +1,7 @@
 package com.example.bibliosystem.repository;
 
 import com.example.bibliosystem.entity.Auteur;
-import com.example.bibliosystem.payload.response.AuteursLusResponse;
+import com.example.bibliosystem.entity.custom.AuteursLus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -24,6 +24,6 @@ public interface AuteursLusRepository extends JpaRepository<Auteur, String> {
             " CASE WHEN :ordreTri > 0  THEN COUNT(pret.id) END DESC " +
             " LIMIT 10 ",
             nativeQuery = true)
-    List<AuteursLusResponse> findAuteursLus(Integer ordreTri);
+    List<AuteursLus> findAuteursLus(Integer ordreTri);
 
 }

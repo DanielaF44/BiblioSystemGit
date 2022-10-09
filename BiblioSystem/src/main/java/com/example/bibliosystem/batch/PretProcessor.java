@@ -6,38 +6,32 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Component;
 
 /**
  * Classe de gestion des prêts à l'origine de l'envoi d'un mail de relance
  */
+@Component
 public class PretProcessor implements ItemProcessor<String, String> {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
 
-//    @Autowired
-//    private JavaMailSender mailSender;
-
-    //stub
-    //TODO : ici le code d'envoie d'email quand le probleme aura été identifié
-
     @Autowired
-    EmailSenderConfig emailService;
+    public JavaMailSender emailSender;
 
     @Override
     public String process(String data) throws Exception {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("biblio@biblio.com");
-        message.setTo("vvincent87@gmail.com");
-        message.setSubject("subject");
-        message.setText("text");
- //       mailSender.send(message);
 
-        //emailService.sendEmail("vvincent87@gmail.com", "subject", "text");
-        System.out.println("MyCustomProcessor : Processing data : "+data);
-        data = data.toUpperCase();
-        logger.info("MyCustomProcessor : Processing data : "+data);
-        return data;
+        message.setTo("vvincent87@gmail.com");
+        message.setSubject("Test Simple Email");
+        message.setText("Hello, Im testing Simple Email");
+
+        this.emailSender.send(message);
+
+        return "Email Sent!";
     }
 
 }

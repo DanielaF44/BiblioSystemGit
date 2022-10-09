@@ -1,4 +1,4 @@
-package com.example.bibliosystem.security;
+package com.example.bibliosystem.repository;
 
 import com.example.bibliosystem.entity.Langue;
 import org.springframework.data.jpa.repository.JpaRepository;

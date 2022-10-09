@@ -1,7 +1,7 @@
 package com.example.bibliosystem.controller;
 
-import com.example.bibliosystem.payload.response.AuteursLusResponse;
-import com.example.bibliosystem.payload.response.LivresPretesResponse;
+import com.example.bibliosystem.entity.custom.AuteursLus;
+import com.example.bibliosystem.entity.custom.LivresPretes;
 import com.example.bibliosystem.service.DashboardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class DashboardController {
      * @return Liste de livres (utilisation d'une classe de request et de response)
      */
     @GetMapping("/livrespretes")
-    public List<LivresPretesResponse> livresPretes(@RequestParam(name="ordretri", required=false) Integer ordreTri){
+    public List<LivresPretes> livresPretes(@RequestParam(name="ordretri", required=false) Integer ordreTri){
         // 0 => tri ascendant ASC
         // 1 => tri descendant DESC
         if( ordreTri != null && ordreTri > 0){
@@ -41,7 +41,7 @@ public class DashboardController {
      * @return Liste de livres (utilisation d'une classe de request et de response)
      */
     @GetMapping("/auteurslus")
-    public List<AuteursLusResponse> auteursLus(@RequestParam(name="ordretri", required=false) Integer ordreTri){
+    public List<AuteursLus> auteursLus(@RequestParam(name="ordretri", required=false) Integer ordreTri){
         // 0 => tri ascendant ASC
         // 1 => tri descendant DESC
         if( ordreTri != null && ordreTri > 0){

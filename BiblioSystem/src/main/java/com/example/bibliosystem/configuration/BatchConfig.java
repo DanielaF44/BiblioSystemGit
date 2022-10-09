@@ -3,11 +3,13 @@ package com.example.bibliosystem.configuration;
 import com.example.bibliosystem.batch.PretProcessor;
 import com.example.bibliosystem.batch.PretReader;
 import com.example.bibliosystem.batch.PretWriter;
+import com.example.bibliosystem.entity.custom.UserPretRelance;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.item.data.RepositoryItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +22,12 @@ public class BatchConfig {
 
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
+
+    @Autowired
+    public PretReader pretReader;
+
+    @Autowired
+    public PretProcessor pretProcessor;
 
     private final String JOB_NAME = "jobRelance";
     private final String STEP_NAME = "relanceStep";
@@ -40,11 +48,10 @@ public class BatchConfig {
     @Bean
     public Step relanceStep(){
         return stepBuilderFactory.get(STEP_NAME).<String, String>chunk(1)
-                .reader( new PretReader())
-                .processor( new PretProcessor())
+                .reader( pretReader )
+                .processor( pretProcessor )
                 .writer( new PretWriter()).build();
     }
-
 
 
  /*
@@ -66,6 +73,7 @@ public class BatchConfig {
     }
 
 */
+
 
 
 

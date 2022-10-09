@@ -59,7 +59,7 @@ public class BiblioService {
 
 
     @Autowired
-    com.example.bibliosystem.security.LangueRepository LangueRepository;
+    com.example.bibliosystem.repository.LangueRepository LangueRepository;
 
     /**
      * Cette méthode permet de transmettre au controleur la liste des langues recupérées depuis la base de données

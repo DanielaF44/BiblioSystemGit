@@ -2,8 +2,8 @@ package com.example.bibliosystem.service;
 
 import com.example.bibliosystem.repository.AuteursLusRepository;
 import com.example.bibliosystem.repository.LivresPretesRepository;
-import com.example.bibliosystem.payload.response.AuteursLusResponse;
-import com.example.bibliosystem.payload.response.LivresPretesResponse;
+import com.example.bibliosystem.entity.custom.AuteursLus;
+import com.example.bibliosystem.entity.custom.LivresPretes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class DashboardService {
      * @param ordreTri 0 asc / 1 desc
      * @return liste de livres
      */
-    public List<LivresPretesResponse> livresPretes(Integer ordreTri) {
+    public List<LivresPretes> livresPretes(Integer ordreTri) {
         return pretRepository.findLivresPretes(ordreTri);
     }
 
@@ -34,7 +34,7 @@ public class DashboardService {
      * @param ordreTri 0 asc / 1 desc
      * @return liste d'auterus
      */
-    public List<AuteursLusResponse> auteursLus(Integer ordreTri) {
+    public List<AuteursLus> auteursLus(Integer ordreTri) {
         return auteurRepository.findAuteursLus(ordreTri);
     }
 }

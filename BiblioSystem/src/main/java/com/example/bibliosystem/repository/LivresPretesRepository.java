@@ -1,7 +1,7 @@
 package com.example.bibliosystem.repository;
 
 import com.example.bibliosystem.entity.Pret;
-import com.example.bibliosystem.payload.response.LivresPretesResponse;
+import com.example.bibliosystem.entity.custom.LivresPretes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,9 +21,8 @@ public interface LivresPretesRepository extends JpaRepository<Pret, String> {
             " GROUP BY livres.isbn, livres.titre " +
             " ORDER BY CASE WHEN :ordreTri <= 0 THEN COUNT(pret.id) END ASC," +
             " CASE WHEN :ordreTri > 0  THEN COUNT(pret.id) END DESC" +
-            //" ORDER by nbPret DESC " +
             " LIMIT 10",
             nativeQuery = true)
-    List<LivresPretesResponse> findLivresPretes(Integer ordreTri);
+    List<LivresPretes> findLivresPretes(Integer ordreTri);
 
 }
