@@ -1,12 +1,12 @@
 <template>
   <section class="Inscription">
     <form @submit="checkForm">
-      <div class="errors" v-if="errors.length">
+      <!-- <div class="errors" v-if="errors.length">
         <b>Please correct the following error(s):</b>
         <ul class="errors">
           <li v-for="error in errors" :key="error">{{ error }}</li>
-        </ul>
-      </div>
+        </ul> 
+      </div> !-->
       <div class="entree">
         <label for="nom">Nom</label>
         <div class="input-div">
@@ -86,9 +86,29 @@ export default {
       }
 
       if (this.errors.length > 0) {
+        for (const i of this.errors) {
+          this.$toast.show(i, { type: "error", duration: 4000 });
+        }
         return;
       }
-      this.$store.dispatch("auth/register", user);
+
+      this.$store
+        .dispatch("auth/register", user)
+        .then(() => {
+          this.$toast.show(
+            "Votre compte a été créé avec succès. <Br> Vous allez être redirigé vers la page de connexion.",
+            { type: "success", duration: 4000 }
+          );
+          setTimeout(() => {
+            this.$router.push({ path: "/connexion" });
+          }, 4000);
+        })
+        .catch(() => {
+          this.$toast.show(
+            "Une erreur est survenue. <Br> Veuillez tenter à nouveau ou nous contacter directement",
+            { type: "success", duration: 4000 }
+          );
+        });
     },
   },
 };

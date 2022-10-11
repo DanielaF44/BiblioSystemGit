@@ -48,24 +48,22 @@ export default {
     //recupère les genres à partir du back end quand le composant est crée
     BiblioServiceFront.getGenres()
       .then((response) => {
-        //add default empty entry
+        //ajout entrée vide par défaut
         let emptyval = { nom: "" };
         let result = [emptyval].concat(response.data);
 
         this.genres = result;
-        //this.genres = response.data;
       })
       .catch((error) => {
         console.log(error);
       });
     BiblioServiceFront.getLangues()
       .then((response) => {
-        //add default empty entry
+        //ajout entrée vide par défaut
         let emptyval = { nom: "" };
         let result = [emptyval].concat(response.data);
 
         this.langues = result;
-        // this.langues = response.data;
       })
       .catch((error) => {
         console.log(error);

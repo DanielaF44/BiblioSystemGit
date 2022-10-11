@@ -72,7 +72,6 @@ export default {
       //recupère des livres à partir du back end quand le composant est crée
       BiblioServiceFront.getDispos(sIsbn)
         .then((response) => {
-          console.log(this.dispos);
           this.dispos = response.data;
         })
         .catch((error) => {

@@ -20,7 +20,6 @@
       <button class="button" v-on:click.prevent="handleLogin(user)">
         Se connecter
       </button>
-      <p v-show="status" v-text="status"></p>
     </form>
   </section>
 </template>
@@ -38,25 +37,21 @@ export default {
       return this.$store.state.auth.status.loggedIn;
     },
   },
-  created() {
-    if (this.loggedIn) {
-      //this.$router.push("/welcome");
-    }
-  },
   methods: {
     handleLogin(user) {
-      console.log(user);
       //this.loading = true;
       this.$store
         .dispatch("auth/login", user)
         .then(() => {
-          // this.$router.push({ path: "/welcome" });
+          this.$router.push({ path: "/welcome" });
         })
-        .catch((error) => {
-          (error) => (this.status = error.response.data.status);
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
+        .catch(() => {
+          this.$toast.show("Identifiants incorrects", {
+            type: "error",
+            duration: 2500,
+          });
+          this.user.username = null;
+          this.user.password = null;
         });
     },
   },
