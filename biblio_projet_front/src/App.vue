@@ -4,6 +4,10 @@
     <NavigationNav></NavigationNav>
   </header>
   <router-view />
+  <footer>
+    <router-link class="mentions" to="/mentions">Mentions légales</router-link>
+    <p class="copyright">&copy; Pontault-Combault</p>
+  </footer>
 </template>
 
 <script>
@@ -29,6 +33,12 @@ export default {
   color: #2c3e50;
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+}
+
+html,
+body {
+  min-height: 100vh;
 }
 
 nav {
@@ -104,5 +114,23 @@ header {
   background-color: #1b77bd;
   margin: 0;
   padding: 0;
+}
+
+footer {
+  height: 80px;
+  background-color: #1b77bd;
+  padding: 40px;
+  position: relative;
+  bottom: 0;
+}
+
+.mentions {
+  color: white;
+  text-decoration: none;
+}
+
+.copyright {
+  color: white;
+  margin: 20px;
 }
 </style>

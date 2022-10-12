@@ -1,27 +1,29 @@
 <template>
-  <section class="Connexion">
-    <form>
-      <div class="entree">
-        <label class="label" for="email">E-mail</label>
-        <div class="input-div">
-          <input
-            type="text"
-            v-model="user.username"
-            placeholder="john.doe@email.com"
-          />
+  <div class="height">
+    <section class="Connexion">
+      <form>
+        <div class="entree">
+          <label class="label" for="email">E-mail</label>
+          <div class="input-div">
+            <input
+              type="text"
+              v-model="user.username"
+              placeholder="john.doe@email.com"
+            />
+          </div>
         </div>
-      </div>
-      <div class="entree">
-        <label class="label" for="MotDePasse">Mot de passe</label>
-        <div class="input-div">
-          <input type="password" v-model="user.password" />
+        <div class="entree">
+          <label class="label" for="MotDePasse">Mot de passe</label>
+          <div class="input-div">
+            <input type="password" v-model="user.password" />
+          </div>
         </div>
-      </div>
-      <button class="button" v-on:click.prevent="handleLogin(user)">
-        Se connecter
-      </button>
-    </form>
-  </section>
+        <button class="button" v-on:click.prevent="handleLogin(user)">
+          Se connecter
+        </button>
+      </form>
+    </section>
+  </div>
 </template>
 <script>
 export default {
@@ -60,13 +62,13 @@ export default {
 <style scoped>
 .Connexion {
   padding: 20px;
-  width: 90%;
   box-shadow: 2px 2px 20px #343434;
   border-radius: 15px;
   margin-bottom: 18px;
   padding-right: 5%;
   background-color: #4b9cda;
   margin-left: 20px;
+  margin-right: 20px;
 }
 
 .label {
@@ -100,6 +102,10 @@ form > button {
   display: flex;
   justify-content: center;
 }
+
+.height {
+  min-height: 100vh;
+}
 @media only screen and (max-width: 768px) {
   input {
     min-width: 80%;
@@ -107,6 +113,10 @@ form > button {
 
   .entree {
     flex-direction: column;
+  }
+
+  .label {
+    text-align: center;
   }
 
   label {

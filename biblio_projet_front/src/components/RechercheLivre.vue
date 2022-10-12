@@ -1,18 +1,18 @@
 <template>
   <div class="rechercheLivre">
-    <form>
+    <form role="search">
       <label for="titre">Titre</label>
-      <input type="text" v-model="rechercheTitre" />
+      <input type="text" v-model="rechercheTitre" role="searchbox" />
       <label for="auteur">Auteur</label>
-      <input type="text" v-model="rechercheAuteur" />
+      <input type="text" v-model="rechercheAuteur" role="searchbox" />
       <label for="genre">Genre</label>
-      <select v-model="rechercheGenre">
+      <select v-model="rechercheGenre" role="searchbox">
         <option v-for="genre in genres" :key="genre.nom" :value="genre.nom">
           {{ genre.nom }}
         </option>
       </select>
       <label for="langue">Langue</label>
-      <select v-model="rechercheLangue">
+      <select v-model="rechercheLangue" role="searchbox">
         <option v-for="langue in langues" :key="langue.nom" :value="langue.nom">
           {{ langue.nom }}
         </option>
@@ -113,5 +113,18 @@ select {
 form > button {
   border-radius: 15px;
   margin: 30px;
+}
+
+@media only screen and (max-width: 984px) {
+  input,
+  select,
+  label {
+    display: block;
+  }
+
+  input,
+  select {
+    margin: auto;
+  }
 }
 </style>

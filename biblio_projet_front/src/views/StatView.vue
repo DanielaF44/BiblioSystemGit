@@ -1,5 +1,5 @@
 <template>
-  <BarChart />
+  <BarChart class="chart" />
 </template>
 
 <script>
@@ -12,3 +12,13 @@ export default {
   },
 };
 </script>
+<style scoped>
+* {
+  display: flex;
+  flex-direction: row;
+}
+.chart {
+  width: 50%;
+  margin: 0;
+}
+</style>

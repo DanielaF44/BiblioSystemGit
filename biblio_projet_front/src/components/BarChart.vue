@@ -174,3 +174,11 @@ export default {
   },
 };
 </script>
+<style scoped>
+* {
+  width: 30%;
+  margin: 0;
+  display: inline-block;
+  margin: 30px;
+}
+</style>

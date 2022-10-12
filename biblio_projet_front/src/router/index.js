@@ -42,6 +42,11 @@ const routes = [
     name: "/dashboard",
     component: () => import("../views/StatView.vue"),
   },
+  {
+    path: "/mentions",
+    name: "/mentions",
+    component: () => import("../views/MentionsLegView.vue"),
+  },
 ];
 
 const router = createRouter({
