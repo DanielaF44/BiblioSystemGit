@@ -33,7 +33,7 @@ public class SchedulerConfig {
      * @throws Exception Exception liée au job de relance
      */
     //Job planifié tous les jours à 9h
-    @Scheduled(cron = "0 9 ? * *")
+    @Scheduled(cron = "0 0 9 * * *")
     public void scheduleByFixedRate() throws Exception {
         JobParameters jobParameters = new JobParametersBuilder()
                 .addString("time", format.format(Calendar.getInstance().getTime())).toJobParameters();
