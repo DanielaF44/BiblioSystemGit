@@ -7,23 +7,27 @@
     v-if="livresPlusLoaded"
     :chart-data="livresPlusChartData"
     :styles="livresPlusStyles"
+    :chart-options="chartOptions"
   />
   <Bar
     v-if="livresMoinsLoaded"
     :chart-data="livresMoinsChartData"
     :styles="livresmoinsStyles"
+    :chart-options="chartOptions"
   />
 
   <Bar
     v-if="auteursPlusLoaded"
     :chart-data="auteursPlusChartData"
     :styles="auteursPlusStyles"
+    :chart-options="chartOptions"
   />
 
   <Bar
     v-if="auteursMoinsLoaded"
     :chart-data="auteursMoinsChartData"
     :styles="auteursMoinsStyles"
+    :chart-options="chartOptions"
   />
 </template>
 
@@ -65,6 +69,10 @@ export default {
       auteursPlusLoaded: false,
       auteursPlusChartData: null,
       auteursPlusLusData: null,
+
+      chartOptions: {
+        responsive: true
+      }
     };
   },
   async mounted() {
@@ -180,5 +188,12 @@ export default {
   margin: 0;
   display: inline-block;
   margin: 30px;
+}
+
+@media only screen and (max-width: 768px){
+  * {
+    display: block;
+    width: 60%;
+  }
 }
 </style>

@@ -14,9 +14,22 @@
 import PretCard from "@/components/PretCard.vue";
 import BiblioServiceFront from "@/services/BiblioServiceFront";
 // import de axios qui permet de gérer les requêtes entrant/sortant de l'API
+import { useHead } from "@vueuse/head";
 
 export default {
   name: "PretView",
+  //ajout balises meta à l'entête de la page html
+  setup() {
+    useHead({
+      title: "Prets en cours",
+      meta: [
+        {
+          name: "description",
+          content: "Liste des prêts en cours de l'utilisateur",
+        },
+      ],
+    });
+  },
   components: {
     PretCard,
   },
@@ -36,6 +49,7 @@ export default {
       });
   },
   methods: {
+    //appelle la methode de biblioservicefront qui permet de prolonger un prêt dans le back end de l'application
     getPret(sId) {
       BiblioServiceFront.postPrets(sId);
       location.reload();

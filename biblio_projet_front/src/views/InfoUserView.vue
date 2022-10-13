@@ -1,4 +1,5 @@
 <template>
+  <div class="container">
   <section class="info-user">
     <ul>
       <li>
@@ -15,12 +16,26 @@
       </li>
     </ul>
     <button class="button">
-      <router-link to="update-user"> Modifier le compte</router-link>
+      <router-link class="router" to="update-user"> Modifier le compte</router-link>
     </button>
   </section>
+</div>
 </template>
 <script>
+import { useHead } from "@vueuse/head";
 export default {
+  //ajout balises meta à l'entête de la page html
+  setup() {
+    useHead({
+      title: "Informations utilisateur",
+      meta: [
+        {
+          name: "description",
+          content: "visualiser et modifier les informations de l'utilisateur",
+        },
+      ],
+    });
+  },
   name: "InfoUserView",
   computed: {
     currentUser() {
@@ -41,6 +56,10 @@ export default {
   margin-left: 20px;
 }
 
+.container{
+  height: 100vh;
+}
+
 .label {
   padding: 20px;
   font-weight: bold;
@@ -57,5 +76,10 @@ p {
 ul {
   list-style: none;
   padding-left: 50px;
+}
+
+.router{
+  text-decoration: none;
+  color: #1b77bd;
 }
 </style>

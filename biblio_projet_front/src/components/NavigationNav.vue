@@ -28,7 +28,7 @@
                 this.$store.state.auth.user.roles[0] == 'ADMIN'
               "
               to="/dashboard"
-              >dashboard</router-link
+              >Dashboard</router-link
             >
           </li>
           <li class="flexLeft-li">
@@ -88,6 +88,16 @@
             >Prêts</router-link
           >
         </li>
+        <li>
+            <router-link
+              v-if="
+                this.$store.state.auth.status.loggedIn &&
+                this.$store.state.auth.user.roles[0] == 'ADMIN'
+              "
+              to="/dashboard"
+              >Dashboard</router-link
+            >
+          </li>
         <li class="dropdown-li">
           <router-link
             v-if="!this.$store.state.auth.status.loggedIn"
@@ -142,6 +152,8 @@ export default {
     toggleMobileNav() {
       this.MobileNav = !this.MobileNav;
     },
+
+    //fonction qui, quand la taille de l'écran est inférieure à 992 change la valeur de la donnée "mobile" à vrai, la navigation desktop sera alors cachée
     checkScreen() {
       this.windowWidth = window.innerWidth;
       if (this.windowWidth <= 992) {
@@ -207,6 +219,10 @@ li > a {
 
 .NavItems {
   flex: 7 1 0;
+}
+
+.button{
+  color: #1b77bd;
 }
 
 @media only screen and (max-width: 992px) {

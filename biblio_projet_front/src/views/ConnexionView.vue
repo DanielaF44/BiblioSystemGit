@@ -26,8 +26,22 @@
   </div>
 </template>
 <script>
+import { useHead } from "@vueuse/head";
+
 export default {
   name: "ConnexionView",
+//ajout balises meta à l'entête de la page html
+  setup() {
+    useHead({
+      title: "Se connecter",
+      meta: [
+        {
+          name: "description",
+          content: "page de connexion",
+        },
+      ],
+    });
+  },
   data() {
     return {
       user: { username: null, password: null },

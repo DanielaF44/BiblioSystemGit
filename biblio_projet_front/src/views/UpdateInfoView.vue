@@ -52,7 +52,20 @@
   </section>
 </template>
 <script>
+import { useHead } from "@vueuse/head";
 export default {
+  //ajout balises meta à l'entête de la page html
+  setup() {
+    useHead({
+      title: "Bienvenue",
+      meta: [
+        {
+          name: "description",
+          content: "page de bienvenue",
+        },
+      ],
+    });
+  },
   name: "UpdateInfoView",
   data() {
     return {
@@ -149,7 +162,7 @@ input {
 
 @media only screen and (max-width: 768px) {
   input {
-    min-width: 80%;
+    width: 100%;
   }
 
   .entree {

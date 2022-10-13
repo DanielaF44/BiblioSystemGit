@@ -52,8 +52,21 @@
   </section>
 </template>
 <script>
+import { useHead } from "@vueuse/head";
 export default {
   name: "ConnexionView",
+  //ajout balises meta à l'entête de la page html
+  setup() {
+    useHead({
+      title: "S'inscrire",
+      meta: [
+        {
+          name: "description",
+          content: "S'inscrire au service de la bibliothèque",
+        },
+      ],
+    });
+  },
   data() {
     return {
       user: { nom: null, prenom: null, email: null, password: null },
@@ -62,6 +75,7 @@ export default {
     };
   },
   methods: {
+    //methode qui transmet au service d'authentification les données saisies pour l'inscription et vérifie la validité de ces entrées
     handleRegister(user, passwordConf) {
       this.errors = [];
       if (!user.nom || user.nom.length < 2) {

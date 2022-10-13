@@ -71,6 +71,7 @@ export default {
   },
 
   methods: {
+    //methode déclanchée en cliquant sur le bouton Rechercher qui va transmettre les données saisie à la methode getLivreparCritere du composant parent Homeview
     rechercher() {
       this.$emit(
         "getLivresparCritere",
