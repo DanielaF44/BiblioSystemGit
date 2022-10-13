@@ -41,6 +41,8 @@
     rgba(162, 220, 228, 0) 92%
   );
   background-size: 100%;
+  height: 100vh;
+  padding-top: 10%;
 }
 
 template {
