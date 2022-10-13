@@ -6,7 +6,7 @@ import { formatDate } from "./commonFunction.js";
   <div class="pretCard">
     <h4>{{ pret.exemplaireId.isbn.titre }}</h4>
     <div class="container">
-      <img src="https://picsum.photos/150/200" />
+      <img :src="require('@/assets/' + pret.exemplaireId.isbn.cover)" v-bind:alt="pret.exemplaireId.isbn.cover" />
       <ul>
         <li>
           <span>Genre/s: </span>
@@ -115,6 +115,11 @@ ul {
 
 span {
   font-weight: bold;
+}
+
+img {
+  width: 150px;
+  height: 200px;
 }
 
 .container {
