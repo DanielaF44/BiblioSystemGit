@@ -1,25 +1,27 @@
 <template>
   <div class="container">
-  <section class="info-user">
-    <ul>
-      <li>
-        <p class="label">Nom:</p>
-        <p>{{ currentUser.nom }}</p>
-      </li>
-      <li>
-        <p class="label">Prénom:</p>
-        <p>{{ currentUser.prenom }}</p>
-      </li>
-      <li>
-        <p class="label">E-mail:</p>
-        <p>{{ currentUser.email }}</p>
-      </li>
-    </ul>
-    <button class="button">
-      <router-link class="router" to="update-user"> Modifier le compte</router-link>
-    </button>
-  </section>
-</div>
+    <section class="info-user">
+      <ul>
+        <li>
+          <p class="label">Nom:</p>
+          <p>{{ currentUser.nom }}</p>
+        </li>
+        <li>
+          <p class="label">Prénom:</p>
+          <p>{{ currentUser.prenom }}</p>
+        </li>
+        <li>
+          <p class="label">E-mail:</p>
+          <p>{{ currentUser.email }}</p>
+        </li>
+      </ul>
+      <button class="button">
+        <router-link class="router" to="update-user">
+          Modifier le compte</router-link
+        >
+      </button>
+    </section>
+  </div>
 </template>
 <script>
 import { useHead } from "@vueuse/head";
@@ -56,7 +58,7 @@ export default {
   margin-left: 20px;
 }
 
-.container{
+.container {
   height: 100vh;
 }
 
@@ -78,7 +80,7 @@ ul {
   padding-left: 50px;
 }
 
-.router{
+.router {
   text-decoration: none;
   color: #1b77bd;
 }

@@ -71,8 +71,8 @@ export default {
       auteursPlusLusData: null,
 
       chartOptions: {
-        responsive: true
-      }
+        responsive: true,
+      },
     };
   },
   async mounted() {
@@ -190,7 +190,7 @@ export default {
   margin: 30px;
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   * {
     display: block;
     width: 60%;

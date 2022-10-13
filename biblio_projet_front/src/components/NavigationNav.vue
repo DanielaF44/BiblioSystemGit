@@ -89,15 +89,15 @@
           >
         </li>
         <li>
-            <router-link
-              v-if="
-                this.$store.state.auth.status.loggedIn &&
-                this.$store.state.auth.user.roles[0] == 'ADMIN'
-              "
-              to="/dashboard"
-              >Dashboard</router-link
-            >
-          </li>
+          <router-link
+            v-if="
+              this.$store.state.auth.status.loggedIn &&
+              this.$store.state.auth.user.roles[0] == 'ADMIN'
+            "
+            to="/dashboard"
+            >Dashboard</router-link
+          >
+        </li>
         <li class="dropdown-li">
           <router-link
             v-if="!this.$store.state.auth.status.loggedIn"
@@ -221,7 +221,7 @@ li > a {
   flex: 7 1 0;
 }
 
-.button{
+.button {
   color: #1b77bd;
 }
 

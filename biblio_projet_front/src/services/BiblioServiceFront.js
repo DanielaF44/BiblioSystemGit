@@ -53,7 +53,7 @@ export default {
 
   postPrets(sId) {
     let sUrl = "/prets?pretId=" + sId;
-    return apiClient.post(sUrl);
+    return axios.post(API_URL + sUrl, { headers: authHeader() });
   },
 
   getDispos(sIsbn) {

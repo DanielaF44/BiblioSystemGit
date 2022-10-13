@@ -30,7 +30,7 @@ import { useHead } from "@vueuse/head";
 
 export default {
   name: "ConnexionView",
-//ajout balises meta à l'entête de la page html
+  //ajout balises meta à l'entête de la page html
   setup() {
     useHead({
       title: "Se connecter",

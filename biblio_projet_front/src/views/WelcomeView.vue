@@ -11,7 +11,6 @@
 import { useHead } from "@vueuse/head";
 
 export default {
-
   //ajout balises meta à l'entête de la page html
   setup() {
     useHead({
@@ -28,7 +27,6 @@ export default {
 </script>
 
 <style scoped>
-
 .titres {
   display: flex;
   flex-direction: column;

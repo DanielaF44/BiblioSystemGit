@@ -55,7 +55,11 @@ import { formatDate } from "./commonFunction.js";
         <button class="disabled" type="button" v-if="pret.renouvele" disabled>
           Impossible de prolonger la période de prêt une seconde fois
         </button>
-        <button type="button" v-else v-on:click="prolonger(pret.pret_id)">
+        <button
+          type="button"
+          v-else
+          v-on:click.prevent="prolonger(pret.pret_id)"
+        >
           Prolonger la periode de prêt
         </button>
       </div>

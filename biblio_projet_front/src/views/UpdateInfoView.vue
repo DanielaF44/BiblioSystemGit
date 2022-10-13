@@ -75,6 +75,7 @@ export default {
     };
   },
   methods: {
+    //appelle la methode de biblioservicefront qui permet de changer les informations de l'utilisateur dans le back end. Avant de transmettre les nouvelles informations, des vérifications sont effectuées.
     handleUpdate(user, passwordConf) {
       this.errors = [];
       if (!user.nom || user.nom.length < 2) {

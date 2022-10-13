@@ -35,15 +35,14 @@ export default {
   margin: 0;
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
+  * {
+    flex-direction: column;
+  }
 
-* {
-  flex-direction: column;
-}
-
-.chart{
-  width: 100%;
-  margin: 400px;
-}
+  .chart {
+    width: 100%;
+    margin: 400px;
+  }
 }
 </style>

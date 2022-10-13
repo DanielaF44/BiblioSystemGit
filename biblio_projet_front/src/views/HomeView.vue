@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    
     <RechercheLivre @getLivresparCritere="getLivresparCritere" />
     <div class="errors" v-if="errors.length">
       <b>Please correct the following error(s):</b>
