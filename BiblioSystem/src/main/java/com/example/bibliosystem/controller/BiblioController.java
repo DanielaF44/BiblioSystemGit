@@ -103,7 +103,7 @@ public class BiblioController {
      * On ne passe pas d'informations de l'utilisateur dans le corps de la requête
      * @return
      */
-    @RolesAllowed("USER")
+    //@RolesAllowed({"USER","ADMIN"})
     @GetMapping("prets")
     public List<Pret> showPret(){
         //On récupère un objet user qui correspond à l'utilisateur à l'origine de la requête
@@ -122,7 +122,7 @@ public class BiblioController {
      * Cette méthode du controleur permet à un utilisateur de prolonger un prêt
      * @param pretId id du prêt à prolonger
      */
-    @RolesAllowed("USER")
+   // @RolesAllowed({"USER","ADMIN"})
     @PostMapping("prets")
     public void prolongePret(@RequestParam(name="pretId") Integer pretId){
         biblio.updateDateFin(pretId);

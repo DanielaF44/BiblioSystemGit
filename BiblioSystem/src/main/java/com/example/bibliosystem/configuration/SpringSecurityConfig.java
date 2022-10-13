@@ -54,13 +54,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                .antMatchers("/livresbycriteria*").permitAll()
-               .antMatchers("//sendSimpleEmail*").permitAll()
+              // .antMatchers("/mail/sendSimpleEmail*").permitAll()
                .antMatchers("/langue*").permitAll()
                .antMatchers("/genre*").permitAll()
                .antMatchers("/disponibilite*").permitAll()
                .antMatchers("**/favicon.ico").permitAll()
                .antMatchers("**/assets/**").permitAll()
-               .antMatchers("/prets*").access("hasRole('USER') or hasRole('ADMIN')")
+               //.antMatchers("/prets**").hasAnyRole("USER","ADMIN")
+               .antMatchers("/prets**").permitAll()
                .antMatchers("/dashboard/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
 

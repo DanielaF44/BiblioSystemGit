@@ -21,8 +21,7 @@ public interface PretRepository extends JpaRepository<Pret, String> {
     @Query(value = "SELECT date_fin FROM pret WHERE (pret.id = :pretId)", nativeQuery = true)
     Date findDateById(Integer pretId);
 
-    //TODO : bug à corriger : il faut un join avec le pret et l'utisateur
-    // pour verifier que l'utilisateur prolonge un pret qui est bien à lui
+
     @Transactional
     @Modifying
     @Query(value = "UPDATE pret SET date_fin = :dateProlonge, renouvele = true WHERE (pret.id = :pretId)", nativeQuery = true)
