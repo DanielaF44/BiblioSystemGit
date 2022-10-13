@@ -70,6 +70,10 @@ export default {
       auteursPlusChartData: null,
       auteursPlusLusData: null,
 
+      auteursMoinsLoaded: false,
+      auteursMoinsChartData: null,
+      auteursMoinsLusData: null,
+
       chartOptions: {
         responsive: true,
       },
@@ -96,9 +100,6 @@ export default {
         };
 
         this.livresPlusLoaded = true;
-      })
-      .catch((error) => {
-        console.log(error);
       });
 
     //recupère les livres les moins pretes
@@ -121,9 +122,6 @@ export default {
         };
 
         this.livresMoinsLoaded = true;
-      })
-      .catch((error) => {
-        console.log(error);
       });
 
     //recupère les auteurs les plus lus
@@ -148,9 +146,6 @@ export default {
         };
 
         this.auteursPlusLoaded = true;
-      })
-      .catch((error) => {
-        console.log(error);
       });
 
     //recupère les auteurs les plus lus
@@ -175,9 +170,6 @@ export default {
         };
 
         this.auteursMoinsLoaded = true;
-      })
-      .catch((error) => {
-        console.log(error);
       });
   },
 };
