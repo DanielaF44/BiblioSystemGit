@@ -24,11 +24,13 @@ public class Pret {
     @Column(name = "renouvele")
     private Boolean renouvele;
 
-
     @JsonManagedReference
     @OneToOne
     @JoinColumn(name ="exemplaire_id", referencedColumnName = "id")
     private Exemplaire exemplaireId;
+
+    @Column(name = "utilisateur_id")
+    private Integer utilisateur_id;
 
     public Pret(){
 
@@ -73,6 +75,10 @@ public class Pret {
     public void setExemplaireId(Exemplaire exemplaireId) {
         this.exemplaireId = exemplaireId;
     }
+
+    public Integer getUtilisateur_id() { return utilisateur_id;}
+
+    public void setUtilisateur_id(Integer utilisateur_id) { this.utilisateur_id = utilisateur_id; }
 
 
 }
