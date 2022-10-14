@@ -15,7 +15,7 @@ import java.util.Optional;
 /**
  * controleur responsable de la gestion de la bibliothèque
  */
-@CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080"})
+@CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080", "https://df-biblio-front.herokuapp.com/"}, exposedHeaders = "**")
 @RestController
 public class BiblioController {
     @Autowired

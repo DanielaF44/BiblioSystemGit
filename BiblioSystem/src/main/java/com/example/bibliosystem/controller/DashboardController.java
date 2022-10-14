@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Controleur responsable des stats de la biliothèque
  */
-@CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080"})
+@CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080", "https://df-biblio-front.herokuapp.com/"}, exposedHeaders = "**")
 @RestController
 @RequestMapping("/dashboard")
 public class DashboardController {

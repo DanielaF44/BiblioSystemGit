@@ -21,7 +21,7 @@ public class SimpleEmailExampleController {
         // Create a Simple MailMessage.
         SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setTo("vvincent87@gmail.com");
+        message.setTo("daniela.fava44@gmail.com");
         message.setSubject("Test Simple Email");
         message.setText("Hello, Im testing Simple Email");
 

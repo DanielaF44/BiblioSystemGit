@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 /**
  * controleur responsable de l'authentification et inscriprion des utilisateurs
  */
-@CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080"})
+@CrossOrigin(origins ={"http://localhost:8081", "http://localhost:8080", "https://df-biblio-front.herokuapp.com"}, exposedHeaders = "**")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
