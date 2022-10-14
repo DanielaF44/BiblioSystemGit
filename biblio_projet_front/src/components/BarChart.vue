@@ -1,5 +1,4 @@
 <template>
-  <!--TODO styles-->
   <!-- le chargement du chart se fait directement alors qu'on fait un appel asynchrone au service
   il faut donc conditioner l'affichage avec un if afin de ne charger le chart qu'une fois le
   résultat du service reçu -->

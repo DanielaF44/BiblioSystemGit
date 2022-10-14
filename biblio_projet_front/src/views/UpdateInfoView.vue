@@ -1,6 +1,7 @@
 <template>
   <section class="UpdateInfo">
     <form>
+      <p>Les champs avec * sont obligatoires.</p>
       <div class="errors" v-if="errors.length">
         <b>Please correct the following error(s):</b>
         <ul class="errors">
@@ -8,37 +9,38 @@
         </ul>
       </div>
       <div class="entree">
-        <label for="nom">Nom</label>
+        <label for="nom">Nom *</label>
         <div class="input-div">
-          <input v-model="user.nom" type="text" placeholder="Doe" />
+          <input v-model="user.nom" type="text" placeholder="Doe" required/>
         </div>
       </div>
       <div class="entree">
-        <label for="prenom">Prénom</label>
+        <label for="prenom">Prénom *</label>
         <div class="input-div">
-          <input v-model="user.prenom" type="text" placeholder="John" />
+          <input v-model="user.prenom" type="text" placeholder="John" required/>
         </div>
       </div>
       <div class="entree">
-        <label for="email">E-mail</label>
+        <label for="email">E-mail *</label>
         <div class="input-div">
           <input
             v-model="user.email"
             type="text"
             placeholder="john.doe@email.com"
+            required
           />
         </div>
       </div>
       <div class="entree">
-        <label for="mdp">Mot de passe</label>
+        <label for="mdp">Mot de passe *</label>
         <div class="input-div">
-          <input v-model="user.password" type="password" />
+          <input v-model="user.password" type="password" required/>
         </div>
       </div>
       <div class="entree">
-        <label for="mdp">Confirmation du mot de passe</label>
+        <label for="mdp">Confirmation du mot de passe *</label>
         <div class="input-div">
-          <input v-model="passwordConf" type="password" />
+          <input v-model="passwordConf" type="password" required/>
         </div>
       </div>
       <button
