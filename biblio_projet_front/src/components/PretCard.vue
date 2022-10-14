@@ -6,7 +6,10 @@ import { formatDate } from "./commonFunction.js";
   <div class="pretCard">
     <h4>{{ pret.exemplaireId.isbn.titre }}</h4>
     <div class="container">
-      <img :src="require('@/assets/' + pret.exemplaireId.isbn.cover)" v-bind:alt="pret.exemplaireId.isbn.cover" />
+      <img
+        :src="require('@/assets/' + pret.exemplaireId.isbn.cover)"
+        v-bind:alt="pret.exemplaireId.isbn.cover"
+      />
       <ul>
         <li>
           <span>Genre/s: </span>

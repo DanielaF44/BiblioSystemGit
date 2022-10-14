@@ -80,96 +80,92 @@ export default {
   },
   async mounted() {
     //recupère les livres les plus pretes
-    BiblioServiceFront.getLivresPretes(1)
-      .then((response) => {
-        this.livresPlusPretesData = response.data;
-        //on recupere les valeurs de l'axe des x => titres
-        const x = this.livresPlusPretesData.map((aData) => aData.titre);
-        //on recupere les valeurs de l'axe des y => nombre de prets
-        const y = this.livresPlusPretesData.map((aData) => aData.nbPret);
-        this.livresPlusChartData = {
-          labels: x,
-          datasets: [
-            {
-              label: "Nombre de prêts",
-              backgroundColor: "#f87979",
-              data: y,
-            },
-          ],
-        };
+    BiblioServiceFront.getLivresPretes(1).then((response) => {
+      this.livresPlusPretesData = response.data;
+      //on recupere les valeurs de l'axe des x => titres
+      const x = this.livresPlusPretesData.map((aData) => aData.titre);
+      //on recupere les valeurs de l'axe des y => nombre de prets
+      const y = this.livresPlusPretesData.map((aData) => aData.nbPret);
+      this.livresPlusChartData = {
+        labels: x,
+        datasets: [
+          {
+            label: "Nombre de prêts",
+            backgroundColor: "#f87979",
+            data: y,
+          },
+        ],
+      };
 
-        this.livresPlusLoaded = true;
-      });
+      this.livresPlusLoaded = true;
+    });
 
     //recupère les livres les moins pretes
-    BiblioServiceFront.getLivresPretes(0)
-      .then((response) => {
-        this.livresMoinsPretesData = response.data;
-        //on recupere les valeurs de l'axe des x => titres
-        const x = this.livresMoinsPretesData.map((aData) => aData.titre);
-        //on recupere les valeurs de l'axe des y => nombre de prets
-        const y = this.livresMoinsPretesData.map((aData) => aData.nbPret);
-        this.livresMoinsChartData = {
-          labels: x,
-          datasets: [
-            {
-              label: "Nombre de prêts",
-              backgroundColor: "#f87979",
-              data: y,
-            },
-          ],
-        };
+    BiblioServiceFront.getLivresPretes(0).then((response) => {
+      this.livresMoinsPretesData = response.data;
+      //on recupere les valeurs de l'axe des x => titres
+      const x = this.livresMoinsPretesData.map((aData) => aData.titre);
+      //on recupere les valeurs de l'axe des y => nombre de prets
+      const y = this.livresMoinsPretesData.map((aData) => aData.nbPret);
+      this.livresMoinsChartData = {
+        labels: x,
+        datasets: [
+          {
+            label: "Nombre de prêts",
+            backgroundColor: "#f87979",
+            data: y,
+          },
+        ],
+      };
 
-        this.livresMoinsLoaded = true;
-      });
-
-    //recupère les auteurs les plus lus
-    BiblioServiceFront.getAuteursLus(1)
-      .then((response) => {
-        this.auteursPlusLusData = response.data;
-        //on recupere les valeurs de l'axe des x => auteur
-        const x = this.auteursPlusLusData.map(
-          (aData) => aData.prenom + " " + aData.nom
-        );
-        //on recupere les valeurs de l'axe des y => nombre de prets
-        const y = this.auteursPlusLusData.map((aData) => aData.nbPret);
-        this.auteursPlusChartData = {
-          labels: x,
-          datasets: [
-            {
-              label: "Nombre de prêts",
-              backgroundColor: "#f87979",
-              data: y,
-            },
-          ],
-        };
-
-        this.auteursPlusLoaded = true;
-      });
+      this.livresMoinsLoaded = true;
+    });
 
     //recupère les auteurs les plus lus
-    BiblioServiceFront.getAuteursLus(0)
-      .then((response) => {
-        this.auteursMoinsLusData = response.data;
-        //on recupere les valeurs de l'axe des x => auteur
-        const x = this.auteursMoinsLusData.map(
-          (aData) => aData.prenom + " " + aData.nom
-        );
-        //on recupere les valeurs de l'axe des y => nombre de prets
-        const y = this.auteursMoinsLusData.map((aData) => aData.nbPret);
-        this.auteursMoinsChartData = {
-          labels: x,
-          datasets: [
-            {
-              label: "Nombre de prêts",
-              backgroundColor: "#f87979",
-              data: y,
-            },
-          ],
-        };
+    BiblioServiceFront.getAuteursLus(1).then((response) => {
+      this.auteursPlusLusData = response.data;
+      //on recupere les valeurs de l'axe des x => auteur
+      const x = this.auteursPlusLusData.map(
+        (aData) => aData.prenom + " " + aData.nom
+      );
+      //on recupere les valeurs de l'axe des y => nombre de prets
+      const y = this.auteursPlusLusData.map((aData) => aData.nbPret);
+      this.auteursPlusChartData = {
+        labels: x,
+        datasets: [
+          {
+            label: "Nombre de prêts",
+            backgroundColor: "#f87979",
+            data: y,
+          },
+        ],
+      };
 
-        this.auteursMoinsLoaded = true;
-      });
+      this.auteursPlusLoaded = true;
+    });
+
+    //recupère les auteurs les plus lus
+    BiblioServiceFront.getAuteursLus(0).then((response) => {
+      this.auteursMoinsLusData = response.data;
+      //on recupere les valeurs de l'axe des x => auteur
+      const x = this.auteursMoinsLusData.map(
+        (aData) => aData.prenom + " " + aData.nom
+      );
+      //on recupere les valeurs de l'axe des y => nombre de prets
+      const y = this.auteursMoinsLusData.map((aData) => aData.nbPret);
+      this.auteursMoinsChartData = {
+        labels: x,
+        datasets: [
+          {
+            label: "Nombre de prêts",
+            backgroundColor: "#f87979",
+            data: y,
+          },
+        ],
+      };
+
+      this.auteursMoinsLoaded = true;
+    });
   },
 };
 </script>

@@ -11,13 +11,18 @@
       <div class="entree">
         <label for="nom">Nom *</label>
         <div class="input-div">
-          <input v-model="user.nom" type="text" placeholder="Doe" required/>
+          <input v-model="user.nom" type="text" placeholder="Doe" required />
         </div>
       </div>
       <div class="entree">
         <label for="prenom">Prénom *</label>
         <div class="input-div">
-          <input v-model="user.prenom" type="text" placeholder="John" required/>
+          <input
+            v-model="user.prenom"
+            type="text"
+            placeholder="John"
+            required
+          />
         </div>
       </div>
       <div class="entree">
@@ -34,13 +39,13 @@
       <div class="entree">
         <label for="mdp">Mot de passe *</label>
         <div class="input-div">
-          <input v-model="user.password" type="password" required/>
+          <input v-model="user.password" type="password" required />
         </div>
       </div>
       <div class="entree">
         <label for="mdp">Confirmation du mot de passe *</label>
         <div class="input-div">
-          <input v-model="passwordConf" type="password" required/>
+          <input v-model="passwordConf" type="password" required />
         </div>
       </div>
       <button
