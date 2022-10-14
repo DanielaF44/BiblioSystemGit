@@ -71,7 +71,6 @@ import { formatDate } from "./commonFunction.js";
 </template>
 
 <script>
-/*import BiblioServiceFront from "@/services/BiblioServiceFront";*/
 export default {
   name: "pretCard",
   props: {
@@ -88,7 +87,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .pretCard {
   padding: 20px;

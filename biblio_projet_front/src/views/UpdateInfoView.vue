@@ -2,12 +2,6 @@
   <section class="UpdateInfo">
     <form>
       <p>Les champs avec * sont obligatoires.</p>
-      <div class="errors" v-if="errors.length">
-        <b>Please correct the following error(s):</b>
-        <ul class="errors">
-          <li v-for="error in errors" :key="error">{{ error }}</li>
-        </ul>
-      </div>
       <div class="entree">
         <label for="nom">Nom *</label>
         <div class="input-div">
@@ -51,7 +45,7 @@
       <button
         class="button buttonIns"
         type="submit"
-        v-on:click="handleUpdate(user)"
+        v-on:click.prevent="handleUpdate(user, passwordConf)"
       >
         Valider la modification du compte
       </button>
@@ -64,11 +58,11 @@ export default {
   //ajout balises meta à l'entête de la page html
   setup() {
     useHead({
-      title: "Bienvenue",
+      title: "modifications informations utilisateur",
       meta: [
         {
           name: "description",
-          content: "page de bienvenue",
+          content: "modification informations utilisateur",
         },
       ],
     });
@@ -93,7 +87,7 @@ export default {
         this.errors.push("Prenom invalide");
       }
 
-      if (!user.email || user.email.includes("@", ".")) {
+      if (!user.email || !user.email.includes("@", ".")) {
         this.errors.push("Email invalide");
       }
 
@@ -104,22 +98,29 @@ export default {
       }
 
       if (user.password != passwordConf) {
+        console.log(user.password);
+        console.log(passwordConf);
         this.errors.push("Les deux mots de passe doivent être identiques");
       }
 
       if (this.errors.length > 0) {
+        for (const i of this.errors) {
+          this.$toast.show(i, { type: "error", duration: 4000 });
+        }
         return;
       }
-      //this.message = "";
-      //this.successful = false;
-      //this.loading = true;
-      this.$store.dispatch("auth/profile", user).then(() => {
-        // this.$router.push({ path: "/welcome" });
-      });
-      //.catch((err) => {
-      // this.error = err.response.data.error;
-      //});
-      //console.log(error.toString());
+
+      this.$store
+        .dispatch("auth/profile", user)
+        .then(() => {
+          this.$router.push({ path: "/infos-user" });
+        })
+        .catch(() => {
+          this.$toast.show(
+            "Une erreur est survenue. <Br> Veuillez tenter à nouveau ou nous contacter directement",
+            { type: "error", duration: 4000 }
+          );
+        });
     },
   },
 };

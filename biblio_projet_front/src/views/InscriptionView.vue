@@ -1,12 +1,6 @@
 <template>
   <section class="Inscription">
     <form @submit="checkForm">
-      <!-- <div class="errors" v-if="errors.length">
-        <b>Please correct the following error(s):</b>
-        <ul class="errors">
-          <li v-for="error in errors" :key="error">{{ error }}</li>
-        </ul> 
-      </div> !-->
       <p>Les champs avec * sont obligatoires.</p>
       <div class="entree">
         <label for="nom">Nom *</label>
@@ -127,7 +121,7 @@ export default {
         .catch(() => {
           this.$toast.show(
             "Une erreur est survenue. <Br> Veuillez tenter à nouveau ou nous contacter directement",
-            { type: "success", duration: 4000 }
+            { type: "error", duration: 4000 }
           );
         });
     },
