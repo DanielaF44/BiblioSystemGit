@@ -26,7 +26,7 @@ public class BiblioController {
 
     /**
      * Cette méthode du controleur permet d'envoyer la liste des livres présents en base de données dans la table "livres"
-     * @return List<Livre> appelle la methode showLivre du Service qui retourne la liste des livres
+     * @return la liste des livres
      */
     @GetMapping("livres")
     public List<Livre> showLivre(){
@@ -35,7 +35,7 @@ public class BiblioController {
     }
     /**
      * Cette méthode du controleur permet d'envoyer la liste des genres présents en base de données dans la table "genre"
-     * @return List<Genre> appelle la methode showGenre du Service qui retourne la liste des genres
+     * @return la liste des genres
      */
     @GetMapping("genres")
     public List<Genre> showGenre(){
@@ -44,7 +44,7 @@ public class BiblioController {
 
     /**
      * Cette méthode du controleur permet d'envoyer la liste des langues présentes en base de données dans la table "langue"
-     * @return List<Langue> appelle la methode showLangue du Service qui retourne la liste des langues
+     * @return la liste des langues
      */
     @GetMapping("langues")
     public List<Langue> showLangue(){
@@ -58,7 +58,7 @@ public class BiblioController {
      * @param  titre  le titre du livre recherché
      * @param  genre le genre du livre recherché
      * @param langue  la langue du livre recherché
-     * @return List<Livre> retourne la liste de livres filtrée
+     * @return la liste de livres filtrée
      */
     @GetMapping("livresbycriteria")
     public List<Livre> showRecherche(@RequestParam(name="titre", required=false) String titre,
@@ -101,7 +101,7 @@ public class BiblioController {
      * Cette méthode du controleur permet de récupérer les prêts liés à l'utilisateur qui en fait la demande
      * Pour des raisons de sécurité on récupère les données d'identification via le SecurityContextHolder
      * On ne passe pas d'informations de l'utilisateur dans le corps de la requête
-     * @return
+     * @return la liste des prêts
      */
     //@RolesAllowed({"USER","ADMIN"})
     @GetMapping("prets")

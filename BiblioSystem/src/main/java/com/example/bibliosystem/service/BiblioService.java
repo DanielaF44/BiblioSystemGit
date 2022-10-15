@@ -18,7 +18,7 @@ public class BiblioService {
 
     /**
      * Cette méthode permet de transmettre au controleur la liste des livres recupérés depuis la base de données
-     * @return List<Livre> retourne la liste des livres
+     * @return la liste des livres
      */
     public List<Livre> showLivre(){
         return BiblioRepository.findAll();
@@ -32,14 +32,15 @@ public class BiblioService {
         BiblioRepository.save(newLivre);
     }
 
-    /**
-     * Cette méthode permet de transmettre au controleur la liste des livres qui a été filtrée à travers la méthode
-     * findAllByCriteria définie dans BiblioRepository
-     * @return List<Livre> retourne la liste des livres
-     */
+
     @Autowired
     com.example.bibliosystem.repository.ExemplaireRepository ExemplaireRepository;
 
+    /**
+     * Cette méthode permet de transmettre au controleur la liste des livres qui a été filtrée à travers la méthode
+     * findAllByCriteria définie dans BiblioRepository
+     * @return la liste des livres
+     */
     public List<Livre> showRecherche(String genre, String auteur, String titre, String langue){
 
         return BiblioRepository.findAllByCriteria(genre, auteur,titre, langue);
@@ -51,7 +52,7 @@ public class BiblioService {
 
     /**
      * Cette méthode permet de transmettre au controleur la liste des genres recupérés depuis la base de données
-     * @return List<Genre> retourne la liste des genres
+     * @return retourne la liste des genres
      */
     public List<Genre> showGenre(){
         return GenreRepository.findAll();
@@ -63,7 +64,7 @@ public class BiblioService {
 
     /**
      * Cette méthode permet de transmettre au controleur la liste des langues recupérées depuis la base de données
-     * @return List<Langue> retourne la liste des genres
+     * @return retourne la liste des genres
      */
     public List<Langue> showLangue(){
         return LangueRepository.findAll();
