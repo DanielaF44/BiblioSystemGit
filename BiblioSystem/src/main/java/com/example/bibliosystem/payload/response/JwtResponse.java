@@ -1,8 +1,14 @@
 package com.example.bibliosystem.payload.response;
 import java.util.List;
 
+/**
+ * Définition de la signature d'une réponse permettant de retourner le token d'authentification lors d'une connection
+ */
 public class JwtResponse {
     private String token;
+    //type "Bearer" car on veut juste donner l'autorisation à n'importe quelle requête
+    // qui "porte" (= qui contient) ce token dans son header
+    //plus d'info sur : https://jwt.io/introduction
     private String type = "Bearer";
     private Integer id;
     private String nom;

@@ -6,7 +6,7 @@ import { formatDate } from "./commonFunction.js";
   <div class="livreCard">
     <h4>{{ livre.titre }}</h4>
     <div class="container">
-      <img src="https://picsum.photos/150/200" />
+      <img :src="require('@/assets/' + livre.cover)" v-bind:alt="livre.cover" />
       <ul>
         <li>
           <span>Genre/s: </span>
@@ -72,7 +72,6 @@ export default {
       //recupère des livres à partir du back end quand le composant est crée
       BiblioServiceFront.getDispos(sIsbn)
         .then((response) => {
-          console.log(this.dispos);
           this.dispos = response.data;
         })
         .catch((error) => {
@@ -83,7 +82,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .livreCard {
   padding: 20px;
@@ -97,10 +95,12 @@ export default {
 h4 {
   color: #1b77bd;
   font-weight: bold;
+  padding: 15px;
 }
 
 .label {
   display: inline-block;
+  padding: 15px;
 }
 
 ul {
@@ -111,6 +111,7 @@ ul {
 
 span {
   font-weight: bold;
+  padding: 15px;
 }
 
 .container {
@@ -118,6 +119,15 @@ span {
   justify-content: flex-start;
   margin: 20px;
   align-items: center;
+}
+
+p {
+  padding: 15px;
+}
+
+img {
+  width: 150px;
+  height: 200px;
 }
 
 @media only screen and (max-width: 992px) {

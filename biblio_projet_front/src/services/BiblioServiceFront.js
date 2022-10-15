@@ -47,19 +47,40 @@ export default {
   },
 
   getPrets() {
-    // TODO : use the real user id when we have it
-    let sUrl = "/prets?utilisateurId=2";
-    console.log(JSON.parse(localStorage.getItem("user")));
+    let sUrl = "/prets";
     return axios.get(API_URL + sUrl, { headers: authHeader() });
   },
 
   postPrets(sId) {
     let sUrl = "/prets?pretId=" + sId;
-    return apiClient.post(sUrl);
+    return axios.post(API_URL + sUrl, { headers: authHeader() });
   },
 
   getDispos(sIsbn) {
     let sUrl = "/disponibilite?isbn=" + sIsbn;
     return apiClient.get(sUrl);
+  },
+
+  //Stats
+  getLivresPretes(iOrdreTri) {
+    let sUrl = "/dashboard/livrespretes?ordretri=";
+    let iparam = 0;
+    //input sanitizing
+    if (iOrdreTri > 0) {
+      iparam = 1;
+    }
+    sUrl = sUrl + iparam;
+    return axios.get(API_URL + sUrl, { headers: authHeader() });
+  },
+
+  getAuteursLus(iOrdreTri) {
+    let sUrl = "/dashboard/auteurslus?ordretri=";
+    let iparam = 0;
+    //input sanitizing
+    if (iOrdreTri > 0) {
+      iparam = 1;
+    }
+    sUrl = sUrl + iparam;
+    return axios.get(API_URL + sUrl, { headers: authHeader() });
   },
 };

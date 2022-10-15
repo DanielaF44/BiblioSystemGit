@@ -6,7 +6,10 @@ import { formatDate } from "./commonFunction.js";
   <div class="pretCard">
     <h4>{{ pret.exemplaireId.isbn.titre }}</h4>
     <div class="container">
-      <img src="https://picsum.photos/150/200" />
+      <img
+        :src="require('@/assets/' + pret.exemplaireId.isbn.cover)"
+        v-bind:alt="pret.exemplaireId.isbn.cover"
+      />
       <ul>
         <li>
           <span>Genre/s: </span>
@@ -55,7 +58,11 @@ import { formatDate } from "./commonFunction.js";
         <button class="disabled" type="button" v-if="pret.renouvele" disabled>
           Impossible de prolonger la période de prêt une seconde fois
         </button>
-        <button type="button" v-else v-on:click="prolonger(pret.pret_id)">
+        <button
+          type="button"
+          v-else
+          v-on:click.prevent="prolonger(pret.pret_id)"
+        >
           Prolonger la periode de prêt
         </button>
       </div>
@@ -64,7 +71,6 @@ import { formatDate } from "./commonFunction.js";
 </template>
 
 <script>
-/*import BiblioServiceFront from "@/services/BiblioServiceFront";*/
 export default {
   name: "pretCard",
   props: {
@@ -81,11 +87,10 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .pretCard {
   padding: 20px;
-  width: 95%;
+  width: 90%;
   box-shadow: 2px 2px 20px #343434;
   border-radius: 15px;
   margin-bottom: 18px;
@@ -100,6 +105,7 @@ h4 {
 
 .label {
   display: inline-block;
+  padding: 15px;
 }
 
 ul {
@@ -110,6 +116,11 @@ ul {
 
 span {
   font-weight: bold;
+}
+
+img {
+  width: 150px;
+  height: 200px;
 }
 
 .container {
@@ -132,6 +143,7 @@ span {
 
 div > button {
   border-radius: 15px;
+  padding: 15px;
 }
 
 .disabled {

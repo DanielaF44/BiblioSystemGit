@@ -7,9 +7,13 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import com.example.bibliosystem.User;
+import com.example.bibliosystem.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
+/**
+ * Classe d'implémentation de userDetails, utilisée pour l'authentification
+ */
 public class UserDetailsImpl implements UserDetails {
 
     private Integer id;
@@ -30,7 +34,14 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
+    /**
+     * Redéfinition de la méthode Build de Userdetail
+     * @param user Objet représentant un utilisateur
+     * @return un objet représentant un utilsateur dans un contexte d'authentification
+     * (= un user + son/ses rôles)
+     */
     public static UserDetailsImpl build(User user) {
+        //On récupère les rôles
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());

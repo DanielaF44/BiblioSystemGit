@@ -2,7 +2,14 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import Toaster from "@meforma/vue-toaster";
+import { createHead } from "@vueuse/head";
 
-createApp(App).use(store).use(router).mount("#app");
+const head = createHead();
+
+createApp(App)
+  .use(store)
+  .use(router)
+  .use(Toaster, { position: "bottom-right" })
+  .use(head)
+  .mount("#app");

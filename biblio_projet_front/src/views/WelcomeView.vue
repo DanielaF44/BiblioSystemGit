@@ -4,22 +4,29 @@
       <h1>Bienvenue sur "Biblio"</h1>
       <h2>Le site de la bibliothèque de Pontault-Combault</h2>
     </div>
-
-    <!--<img
-    class="photo-biblio"
-    src="../assets/biblio-photo.jpg"
-    alt="livres bibliothèque Pontault Combault"
-  />-->
   </div>
 </template>
-<style scoped>
-/*.photo-biblio {
-  position: relative;
-  z-index: 1;
-  bottom: 200px;
-  width: 100%;
-}*/
 
+<script>
+import { useHead } from "@vueuse/head";
+
+export default {
+  //ajout balises meta à l'entête de la page html
+  setup() {
+    useHead({
+      title: "Bienvenue",
+      meta: [
+        {
+          name: "description",
+          content: "page de bienvenue",
+        },
+      ],
+    });
+  },
+};
+</script>
+
+<style scoped>
 .titres {
   display: flex;
   flex-direction: column;
@@ -41,6 +48,8 @@
     rgba(162, 220, 228, 0) 92%
   );
   background-size: 100%;
+  height: 100vh;
+  padding-top: 10%;
 }
 
 template {

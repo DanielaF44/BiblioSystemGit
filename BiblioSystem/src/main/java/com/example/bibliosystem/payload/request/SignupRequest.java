@@ -2,6 +2,9 @@ package com.example.bibliosystem.payload.request;
 
 import java.util.Set;
 
+/**
+ * Définition de la signature d'une inscription utilisateur
+ */
 public class SignupRequest {
 
     private String nom;

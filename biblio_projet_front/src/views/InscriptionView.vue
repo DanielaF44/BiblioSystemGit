@@ -1,35 +1,46 @@
 <template>
   <section class="Inscription">
     <form @submit="checkForm">
-      <div class="errors" v-if="errors.length">
-        <b>Please correct the following error(s):</b>
-        <ul class="errors">
-          <li v-for="error in errors" :key="error">{{ error }}</li>
-        </ul>
+      <p>Les champs avec * sont obligatoires.</p>
+      <div class="entree">
+        <label for="nom">Nom *</label>
+        <div class="input-div">
+          <input v-model="user.nom" type="text" placeholder="Doe" required />
+        </div>
       </div>
       <div class="entree">
-        <label for="nom">Nom</label>
-        <input v-model="user.nom" type="text" placeholder="Doe" />
+        <label for="prenom">Prénom *</label>
+        <div class="input-div">
+          <input
+            v-model="user.prenom"
+            type="text"
+            placeholder="John"
+            required
+          />
+        </div>
       </div>
       <div class="entree">
-        <label for="prenom">Prénom</label>
-        <input v-model="user.prenom" type="text" placeholder="John" />
+        <label for="email">E-mail *</label>
+        <div class="input-div">
+          <input
+            v-model="user.email"
+            type="text"
+            placeholder="john.doe@email.com"
+            required
+          />
+        </div>
       </div>
       <div class="entree">
-        <label for="email">E-mail</label>
-        <input
-          v-model="user.email"
-          type="text"
-          placeholder="john.doe@email.com"
-        />
+        <label for="mdp">Mot de passe *</label>
+        <div class="input-div">
+          <input v-model="user.password" type="password" required />
+        </div>
       </div>
       <div class="entree">
-        <label for="mdp">Mot de passe</label>
-        <input v-model="user.password" type="password" />
-      </div>
-      <div class="entree">
-        <label for="mdp">Confirmation du mot de passe</label>
-        <input v-model="passwordConf" type="password" />
+        <label for="mdp">Confirmation du mot de passe *</label>
+        <div class="input-div">
+          <input v-model="passwordConf" type="password" required />
+        </div>
       </div>
       <button
         class="button buttonIns"
@@ -42,8 +53,21 @@
   </section>
 </template>
 <script>
+import { useHead } from "@vueuse/head";
 export default {
   name: "ConnexionView",
+  //ajout balises meta à l'entête de la page html
+  setup() {
+    useHead({
+      title: "S'inscrire",
+      meta: [
+        {
+          name: "description",
+          content: "S'inscrire au service de la bibliothèque",
+        },
+      ],
+    });
+  },
   data() {
     return {
       user: { nom: null, prenom: null, email: null, password: null },
@@ -52,6 +76,7 @@ export default {
     };
   },
   methods: {
+    //methode qui transmet au service d'authentification les données saisies pour l'inscription et vérifie la validité de ces entrées
     handleRegister(user, passwordConf) {
       this.errors = [];
       if (!user.nom || user.nom.length < 2) {
@@ -62,7 +87,7 @@ export default {
         this.errors.push("Prenom invalide");
       }
 
-      if (!user.email || user.email.includes("@", ".")) {
+      if (!user.email || !user.email.includes("@", ".")) {
         this.errors.push("Email invalide");
       }
 
@@ -76,9 +101,29 @@ export default {
       }
 
       if (this.errors.length > 0) {
+        for (const i of this.errors) {
+          this.$toast.show(i, { type: "error", duration: 4000 });
+        }
         return;
       }
-      this.$store.dispatch("auth/register", user);
+
+      this.$store
+        .dispatch("auth/register", user)
+        .then(() => {
+          this.$toast.show(
+            "Votre compte a été créé avec succès. <Br> Vous allez être redirigé vers la page de connexion.",
+            { type: "success", duration: 4000 }
+          );
+          setTimeout(() => {
+            this.$router.push({ path: "/connexion" });
+          }, 4000);
+        })
+        .catch(() => {
+          this.$toast.show(
+            "Une erreur est survenue. <Br> Veuillez tenter à nouveau ou nous contacter directement",
+            { type: "error", duration: 4000 }
+          );
+        });
     },
   },
 };
@@ -86,7 +131,7 @@ export default {
 <style scoped>
 .Inscription {
   padding: 20px;
-  width: 95%;
+  width: 90%;
   box-shadow: 2px 2px 20px #343434;
   border-radius: 15px;
   margin-bottom: 18px;
@@ -100,6 +145,7 @@ label {
   font-weight: bold;
   min-width: 270px;
   text-align: end;
+  flex: 5 1 0;
 }
 
 input {
@@ -108,24 +154,40 @@ input {
   border-radius: 5px;
   height: 35px;
   margin-left: 20px;
+  min-width: 250px;
+}
+
+.input-div {
+  flex: 5 1 0;
+  text-align: left;
+}
+
+.entree {
+  margin: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 .buttonIns {
   width: 350px;
 }
 
-.errors {
-  list-style: none;
-  color: red;
-}
-
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 768px) {
   input {
     min-width: 80%;
   }
 
+  .entree {
+    flex-direction: column;
+  }
+
   label {
     text-align: center;
+  }
+
+  .buttonIns {
+    width: 250px;
+    height: 80px;
   }
 }
 </style>

@@ -1,92 +1,29 @@
 <template>
   <!-- Barre de navigation-->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-      <router-link to="/"
-        ><img
-          class="logo"
-          src="./assets/BiblioLogo1.png"
-          alt="logo bibliothèque de Pontault-Combault"
-      /></router-link>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#bs-example-navbar-collapse-1"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="collapse navbar-collapse col-11"
-        id="bs-example-navbar-collapse-1"
-      >
-        <ul class="navbar-nav container-fluid">
-          <li class="nav-item ms-col-3">
-            <router-link to="/welcome">Parcourir la bibliothèque</router-link>
-          </li>
-          <li class="nav-item ms-col-3">
-            <router-link
-              v-if="this.$store.state.auth.status.loggedIn"
-              to="/prets"
-              >Prêts</router-link
-            >
-          </li>
-          <li class="nav-item ms-col-6">
-            <ul class="flexLeft">
-              <li class="innerNav">
-                <router-link
-                  v-if="!this.$store.state.auth.status.loggedIn"
-                  to="/connexion"
-                  >Se connecter</router-link
-                >
-              </li>
-              <li class="innerNav">
-                <router-link
-                  v-if="this.$store.state.auth.status.loggedIn"
-                  to="infos-user"
-                  >Informations du compte</router-link
-                >
-              </li>
-              <li class="innerNav">
-                <router-link
-                  class="button"
-                  v-if="this.$store.state.auth.status.loggedIn"
-                  v-on:click="logout"
-                  to="/"
-                >
-                  Se déconnecter</router-link
-                >
-              </li>
-              <li class="innerNav">
-                <router-link
-                  v-if="!this.$store.state.auth.status.loggedIn"
-                  to="/inscription"
-                  >Créer un compte</router-link
-                >
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <header>
+    <NavigationNav></NavigationNav>
+  </header>
   <router-view />
+  <footer>
+    <router-link class="mentions" to="/mentions">Mentions légales</router-link>
+    <p class="copyright">&copy; Pontault-Combault</p>
+  </footer>
 </template>
 
 <script>
+import NavigationNav from "./components/NavigationNav.vue";
 export default {
-  methods: {
-    logout() {
-      this.$store.dispatch("auth/logout");
-    },
+  components: {
+    NavigationNav,
   },
 };
 </script>
 
 <style>
+* {
+  padding: 0px;
+  margin: 0px;
+}
 #app {
   font-family: Montserrat, Arial, Helvetica, sans-serif, Helvetica, Arial,
     sans-serif;
@@ -94,12 +31,23 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+html,
+body {
+  min-height: 100vh;
 }
 
 nav {
   margin-bottom: 30px;
   text-align: left;
   background-color: #1b77bd;
+  list-style: none;
+  display: flex;
+  align-items: center;
 }
 
 nav a {
@@ -123,6 +71,11 @@ ul a.router-link-exact-active {
   background-color: #4b9cda;
   padding: 15px;
   border-radius: 15px;
+}
+
+.navList {
+  list-style: none;
+  display: flex;
 }
 
 .innerNav {
@@ -149,5 +102,35 @@ ul a.router-link-exact-active {
 form > button {
   border-radius: 15px;
   margin: 30px;
+}
+
+.errors {
+  list-style: none;
+  color: red;
+}
+
+header {
+  width: 100%;
+  background-color: #1b77bd;
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  height: 80px;
+  background-color: #1b77bd;
+  padding: 40px;
+  position: relative;
+  bottom: 0;
+}
+
+.mentions {
+  color: white;
+  text-decoration: none;
+}
+
+.copyright {
+  color: white;
+  margin: 20px;
 }
 </style>
