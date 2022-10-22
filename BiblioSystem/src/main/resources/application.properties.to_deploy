@@ -1,17 +1,17 @@
-spring.datasource.url=jdbc:postgres://ec2-99-81-137-11.eu-west-1.compute.amazonaws.com:5432/da69kkr7c4s3tu
-spring.datasource.username=iqtkcvfcyvyuab
-spring.datasource.password=d29182367cbf66a777fc84af1b22a388f402f7983c98ecd2e7928bd54965c0fa
+spring.datasource.url=jdbc:************:***/*******
+spring.datasource.username=*********
+spring.datasource.password=*********
 spring.batch.jdbc.initialize-schema=always
 
 # App Properties
-BiblioSystem.app.jwtSecret=BiblioSystemSecret
+BiblioSystem.app.jwtSecret=***********
 BiblioSystem.app.jwtExpirationMs=86400000
 
 #mail
-spring.mail.host=smtp.gmail.com
-spring.mail.port=587
-spring.mail.username=danielamailsender@gmail.com
-spring.mail.password=fpnakwqpretrolhw
+spring.mail.host=**********
+spring.mail.port=*****
+spring.mail.username=******************
+spring.mail.password=******************
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
 
